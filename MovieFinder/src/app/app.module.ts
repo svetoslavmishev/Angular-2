@@ -9,6 +9,8 @@ import { NavigationComponent } from './navigation/navigation.component';
 import { MoviesService } from './services/movies.service';
 import { MovieComponent } from './movie/movie.component';
 import { FooterComponent } from './footer/footer.component';
+import { AboutComponent } from './about/about.component';
+import { AppRoutesModule } from './app.routes.module';
 
 @NgModule({
   //components must be imported in declarations
@@ -17,12 +19,14 @@ import { FooterComponent } from './footer/footer.component';
     MoviesComponent,
     NavigationComponent,
     MovieComponent,
-    FooterComponent
+    FooterComponent,
+    AboutComponent
   ],
   //modules must be imported in imports
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    AppRoutesModule
   ],
   //services must be imported in providers
   providers: [MoviesService],
