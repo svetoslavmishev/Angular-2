@@ -11,6 +11,8 @@ import { MovieComponent } from './movie/movie.component';
 import { FooterComponent } from './footer/footer.component';
 import { AboutComponent } from './about/about.component';
 import { AppRoutesModule } from './app.routes.module';
+import { NotfoundComponent } from './notfound/notfound.component';
+import { DetailsComponent } from './details/details.component';
 
 @NgModule({
   //components must be imported in declarations
@@ -20,7 +22,9 @@ import { AppRoutesModule } from './app.routes.module';
     NavigationComponent,
     MovieComponent,
     FooterComponent,
-    AboutComponent
+    AboutComponent,
+    DetailsComponent,
+    NotfoundComponent
   ],
   //modules must be imported in imports
   imports: [
