@@ -16,7 +16,10 @@ export class MoviesService {
   kids: string = `discover/movie?certification_country=US&certification.lte=G&sort_by=popularity.desc`;
   drama: string = `discover/movie?with_genres=18&sort_by=vote_average.desc&vote_count.gte=10`;
   details: string = `movie/`;
+  search: string = `search/`;
+  query: string = `&query=`;
   authentication: string = '&api_key=';
+  movieAuthentication: string = '?api_key=';
 
   constructor(private http: HttpClient) { }
 
@@ -42,6 +45,12 @@ export class MoviesService {
 
   getMovieById(id) {
     return this.http
-      .get<Movies>(this.path + this.details + id + `?api_key=` + apiKey);
+      .get<Movies>(this.path + this.details + id + this.movieAuthentication + apiKey);
+  }
+
+
+  searchMovie(query) {
+    return this.http
+      .get<Movies>(this.path + `search/movie?api_key=${apiKey}&query=${query}`);
   }
 }

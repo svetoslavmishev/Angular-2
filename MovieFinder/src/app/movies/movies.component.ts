@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { MoviesService } from '../services/movies.service';
-import { Movies } from '../models/movies';
 import { Movie } from '../models/movie';
 
 @Component({
@@ -13,6 +12,7 @@ export class MoviesComponent implements OnInit {
   theaters: Array<Movie>;
   kids: Array<Movie>;
   drama: Array<Movie>;
+  searchResult: any;
 
   constructor(private moviesService: MoviesService) { }
 
@@ -33,12 +33,21 @@ export class MoviesComponent implements OnInit {
       .getKidsMovies()
       .subscribe(data => {
         this.kids = data.results;
-      })
+      });
 
     this.moviesService
       .getBestDramaMovies()
       .subscribe(data => {
         this.drama = data.results;
-      })
+      });
+  }
+
+  search(query) {
+    let queryValue = query.search;
+    this.moviesService
+      .searchMovie(queryValue)
+      .subscribe(movies => {
+        this.searchResult = movies.results;
+      });
   }
 }
