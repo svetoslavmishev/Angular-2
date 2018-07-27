@@ -15,4 +15,8 @@ export class LoginComponent implements OnInit {
   login(value) {
     console.log(value);
   }
+
+  seeya(data){
+    console.log(data);
+  }
 }
