@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { LoginModel } from '../../models/login.model';
 
 @Component({
   selector: 'app-login',
@@ -6,8 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  model: LoginModel
 
-  constructor() { }
+  constructor() {
+    this.model = new LoginModel('', '');
+  }
 
   ngOnInit() {
   }
@@ -16,7 +20,4 @@ export class LoginComponent implements OnInit {
     console.log(value);
   }
 
-  seeya(data){
-    console.log(data);
-  }
 }

@@ -20,4 +20,8 @@ export class RegisterComponent implements OnInit {
     console.log(value);
   }
 
+  seeya(data){
+    console.log(data);
+  }
+
 }

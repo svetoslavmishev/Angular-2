@@ -3,14 +3,22 @@
   <form (ngSubmit)="login(loginForm.value)" #loginForm="ngForm">
     <div class="form-group">
       <label for="username">Username</label>
-      <input type="text" name="username" class="form-control" id="username" #emailField ngModel required>
-      <div class="alert alert-danger" *ngIf="emailField.touched && emailField.required">Username is required</div>
+      <input type="text" class="form-control" id="username" 
+      [(ngModel)]="model.username"
+      #usernameField="ngModel" 
+      name="username"
+      required>
+      <div class="alert alert-danger" [hidden]="usernameField.pristine || usernameField.valid">Username is required</div>
     </div>
     <div class="form-group">
       <label for="password">Password</label>
-      <input type="password" name="password" class="form-control" id="password" #passwordField ngModel required>
-      <div class="alert alert-danger" *ngIf="passwordField.touched && passwordField.required">Password is required</div>
+      <input type="password" class="form-control" id="password"
+      [(ngModel)]="model.password" 
+      #passwordField="ngModel" 
+      name="password" 
+      required>
+      <div class="alert alert-danger" [hidden]="passwordField.pristine || passwordField.valid">Password is required</div>
     </div>
-    <button type="submit" class="btn btn-primary btn-lg">Login</button>
+    <button type="submit" class="btn btn-primary btn-lg" [disabled]="loginForm.invalid">Login</button>
   </form>
 </div>
