@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterModel } from '../../models/register.model';
+import { AuthenticationService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-register',
@@ -8,20 +10,25 @@ import { RegisterModel } from '../../models/register.model';
 })
 export class RegisterComponent implements OnInit {
   model: RegisterModel;
+  registrationFailed: boolean;
+  errorMessage: string;
 
-  constructor() {
+  constructor(
+    private authService: AuthenticationService,
+    private router: Router) {
     this.model = new RegisterModel('', '', '', '', '', 18);
   }
 
   ngOnInit() {
   }
 
-  register(value) {
-    console.log(value);
+  registerUser() {
+    this.authService.register(this.model)
+      .subscribe(success => {
+        this.router.navigate(['/login'])
+      }, err => {
+        this.registrationFailed = true;
+        this.errorMessage = err.error.description;
+      });
   }
-
-  seeya(data){
-    console.log(data);
-  }
-
 }
