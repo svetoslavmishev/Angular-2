@@ -1,7 +1,4 @@
 <div class="container" align="center">
-  <div *ngIf="loginFailed" class="alert alert-danger">
-    {{errorMessage}}
-  </div>
   <h1>Login</h1>
   <form (ngSubmit)="loginUser()" #loginForm="ngForm">
     <div class="form-group">

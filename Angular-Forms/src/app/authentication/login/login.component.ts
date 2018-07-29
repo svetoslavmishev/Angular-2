@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { LoginModel } from '../../models/login.model';
 import { AuthenticationService } from '../auth.service';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -11,11 +12,12 @@ import { Router } from '@angular/router';
 export class LoginComponent implements OnInit {
   model: LoginModel;
   loginFailed: boolean;
-  errorMessage: string;
 
   constructor(
     private authService: AuthenticationService,
-    private router: Router) {
+    private router: Router,
+    private toastr: ToastrService,
+  ) {
     this.model = new LoginModel('', '');
   }
 
@@ -25,10 +27,11 @@ export class LoginComponent implements OnInit {
   loginUser() {
     this.authService.login(this.model)
       .subscribe(success => {
+        this.toastr.success('You have successfully logged in!')
         this.loginSuccess(success);
       }, err => {
         this.loginFailed = true;
-        this.errorMessage = err.error.description;
+        this.toastr.error(err.error.description, err.error.error);
       });
   }
 

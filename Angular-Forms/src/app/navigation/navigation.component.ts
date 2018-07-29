@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthenticationService } from '../authentication/auth.service';
+import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-navigation',
@@ -7,8 +9,11 @@ import { AuthenticationService } from '../authentication/auth.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-
-  constructor(private authService: AuthenticationService) { }
+  constructor(
+    private router: Router,
+    private authService: AuthenticationService,
+    private toastr: ToastrService
+  ) { }
 
   ngOnInit() {
   }
@@ -18,6 +23,8 @@ export class NavigationComponent implements OnInit {
       .subscribe(success => {
         localStorage.clear();
         this.authService.authtoken = "";
+        this.router.navigate(['/login']);
+        this.toastr.success('You have successfully logout!');
       });
   }
 }
