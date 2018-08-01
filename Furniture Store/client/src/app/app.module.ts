@@ -14,7 +14,11 @@ import { HomeComponent } from './home/home.component';
 import { AuthService } from './authentication/auth.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorIntercptor } from './interceptors/error.interceprot';
-
+import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
+import { CreateFurnitureComponent } from './furniture/create-furniture/create-furniture.component';
+import { FurnitureDetailsComponent } from './furniture/furniture-details/furniture-details.component';
+import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
+import { FurnitureService } from './furniture/furniture.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +26,12 @@ import { ErrorIntercptor } from './interceptors/error.interceprot';
     NavigationComponent,
     SigninComponent,
     SignupComponent,
-    HomeComponent
+    HomeComponent,
+    AllFurnitureComponent,
+    CreateFurnitureComponent,
+    FurnitureDetailsComponent,
+    MyFurnitureComponent
+
   ],
   imports: [
     BrowserModule,
@@ -43,7 +52,8 @@ import { ErrorIntercptor } from './interceptors/error.interceprot';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    }
+    },
+    FurnitureService
   ],
   bootstrap: [AppComponent]
 })
