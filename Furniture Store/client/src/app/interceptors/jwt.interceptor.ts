@@ -23,7 +23,7 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser) {
       request = request.clone({
         setHeaders: {
-          'Authorization': `Bearer ${currentUser.token}`,
+          'Authorization': `Bearer ${currentUser.authtoken}`,
           'Content-Type': 'application/json'
         }
       });
@@ -44,6 +44,11 @@ export class JwtInterceptor implements HttpInterceptor {
         }
 
         if (res instanceof HttpResponse && res.body.success && res.url.endsWith('login')) {
+          this.toastr.success(res.body.message,'Success!');
+          this.router.navigate(['/furniture/all']);
+        }
+
+        if (res instanceof HttpResponse && res.body.success && res.url.endsWith('create')) {
           this.toastr.success(res.body.message,'Success!');
           this.router.navigate(['/furniture/all']);
         }

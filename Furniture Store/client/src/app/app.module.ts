@@ -19,6 +19,7 @@ import { CreateFurnitureComponent } from './furniture/create-furniture/create-fu
 import { FurnitureDetailsComponent } from './furniture/furniture-details/furniture-details.component';
 import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
 import { FurnitureService } from './furniture/furniture.service';
+import { CustomFormsModule } from '../../node_modules/ng2-validation';
 
 @NgModule({
   declarations: [
@@ -39,6 +40,7 @@ import { FurnitureService } from './furniture/furniture.service';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CustomFormsModule,
     ToastrModule.forRoot()
   ],
   providers: [

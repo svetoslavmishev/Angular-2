@@ -20,12 +20,13 @@ export class ErrorIntercptor implements HttpInterceptor {
   intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(req)
       .pipe(catchError((err) => {
-
         if (err.status === 401) {
-          this.toastr.error(err.error.message)
-        }
-        else if (err.status === 400) {
-
+          this.toastr.error(err.error.message);
+        } else if (err.status === 400) {
+          let message = Object.keys(err.error.errors)
+            .map(e => err.error.errors[e])
+            .join('\n');
+          this.toastr.error(message, 'Warning!');
         }
 
         return throwError(err);
