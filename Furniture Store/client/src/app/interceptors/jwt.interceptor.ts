@@ -34,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (res instanceof HttpResponse && res.body.token) {
           localStorage.setItem('currentUser', JSON.stringify({
             "username": res.body.user.name,
-            "authtoken": res.body.token
+            "authtoken": res.body.authtoken
           }));
         }
 
