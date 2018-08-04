@@ -3,12 +3,12 @@ import { HttpClient } from '@angular/common/http';
 import { CreateFurnitureModel } from './models/create-furniture.model';
 import { FurnitureModel } from './models/furniture.model';
 
-const baseUrl = 'http://localhost:5000/furniture';
-const createUrl = `${baseUrl}/create`;
-const allUrl = `${baseUrl}/all`;
-const detailsUrl = `${baseUrl}/create/details/`;
-const myUrl = `${baseUrl}/my`;
-const deleteUrl = `${baseUrl}/delete/`;
+const baseUrl = 'http://localhost:5000';
+const createUrl = `${baseUrl}/furniture/create`;
+const allUrl = `${baseUrl}/furniture/all`;
+const detailsUrl = `${baseUrl}/furniture/details/`;
+const myUrl = `${baseUrl}/furniture/mine`;
+const deleteUrl = `${baseUrl}/furniture/delete/`;
 
 @Injectable({
   providedIn: 'root'

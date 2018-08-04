@@ -22,5 +22,4 @@ export class SignupComponent implements OnInit {
       .register(this.model)
       .subscribe();
   }
-
 }

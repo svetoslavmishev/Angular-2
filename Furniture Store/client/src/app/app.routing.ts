@@ -9,6 +9,7 @@ import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.c
 import { CreateFurnitureComponent } from './furniture/create-furniture/create-furniture.component';
 import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
 import { FurnitureDetailsComponent } from './furniture/furniture-details/furniture-details.component';
+import { AuthGuard } from './authentication/guards/auth.guard';
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'home' },
@@ -16,7 +17,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   {
-    path: 'furniture', children: [
+    path: 'furniture', canActivate:[AuthGuard], children: [
       { path: 'all', component: AllFurnitureComponent },
       { path: 'create', component: CreateFurnitureComponent },
       { path: 'my', component: MyFurnitureComponent },

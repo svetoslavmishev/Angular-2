@@ -1,5 +1,5 @@
 const furnitureData = {}
-let currentId = 0
+let currentId = 1
 
 module.exports = {
   total: () => Object.keys(furnitureData).length,

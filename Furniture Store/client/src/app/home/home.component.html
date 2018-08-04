@@ -1,3 +1,6 @@
-<h1>
-  Hello {{username}}!
-</h1>
+<div class="container">
+  <h1 *ngIf="!username">Welcome</h1>
+  <h1 *ngIf="username">Welcome, {{username}}</h1>
+  <p>Find yout furniture and impress your guests.</p>
+  <img src="https://img.zcdn.com.au/lf/143/hash/2664/18564734/4/custom_image.jpg" alt="">
+</div>

@@ -10,7 +10,7 @@
       #email="ngModel"
       name="email">
 
-      <div [hidden]="email.valid || email.pristine" class="alert alert-dark">
+      <div [hidden]="email.valid || email.pristine" class="alert alert-danger">
         Please provide a correct email address
       </div>
     </div>
@@ -23,7 +23,7 @@
       name="password"
       minlength="4">
 
-      <div [hidden]="password.valid || password.pristine" class="alert alert-dark">
+      <div [hidden]="password.valid || password.pristine" class="alert alert-danger">
         Password must have at least 4 characters
       </div>
     </div>

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FurnitureService } from '../furniture.service';
 import { FurnitureModel } from '../models/furniture.model';
-import { CreateFurnitureModel } from '../models/create-furniture.model';
+import { Observable } from '../../../../node_modules/rxjs';
 
 @Component({
   selector: 'app-my-furniture',
@@ -9,14 +9,16 @@ import { CreateFurnitureModel } from '../models/create-furniture.model';
   styleUrls: ['./my-furniture.component.css']
 })
 export class MyFurnitureComponent implements OnInit {
-  model: FurnitureModel[];
+  furnitures$: Observable<FurnitureModel[]>;
 
   constructor(private myFurnitureService: FurnitureService) { }
 
   ngOnInit() {
-    this.myFurnitureService.getMyFurniture()
-      .subscribe(data => {
-        //this.model = data;
-      });
+    this.furnitures$ = this.myFurnitureService.getMyFurniture();
+  }
+
+  delete(id: string) {
+    this.myFurnitureService.deleteFurniture(id)
+      .subscribe();
   }
 }

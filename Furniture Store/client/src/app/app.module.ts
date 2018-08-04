@@ -32,7 +32,6 @@ import { CustomFormsModule } from '../../node_modules/ng2-validation';
     CreateFurnitureComponent,
     FurnitureDetailsComponent,
     MyFurnitureComponent
-
   ],
   imports: [
     BrowserModule,

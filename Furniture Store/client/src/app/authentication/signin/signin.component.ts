@@ -22,5 +22,4 @@ export class SigninComponent implements OnInit {
       .login(this.model)
       .subscribe();
   }
-
 }

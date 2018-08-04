@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container" *ngIf="furniture$ | async as furn">
   <div class="row space-top">
     <div class="col-md-12">
       <h1>Furniture Details</h1>
@@ -9,18 +9,17 @@
       <div class="card text-white bg-primary">
         <div class="card-body">
           <blockquote class="card-blockquote">
-            <img src="imageUrl" />
+            <img src="{{furn.image}}" />
           </blockquote>
         </div>
       </div>
     </div>
     <div class="col-md-4">
-      <p>Make: make</p>
-      <p>Model: model</p>
-      <p>Year: year</p>
-      <p>Description: description</p>
-      <p>Price: price</p>
-      <p>Material: material</p>
+      <p>Make: {{furn.make}}</p>
+      <p>Model: {{furn.model}}</p>
+      <p>Year: {{furn.year}}</p>
+      <p>Description: {{furn.description}}</p>
+      <p>Price: {{furn.price}}</p>
+      <p>Material: {{furn.material}}</p>
     </div>
   </div>
-</div>

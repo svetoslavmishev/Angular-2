@@ -21,6 +21,6 @@ export class CreateFurnitureComponent implements OnInit {
 
   create() {
     this.createFurnitureService.createFurniture(this.bindModel)
-      .subscribe()
+      .subscribe();
   }
 }

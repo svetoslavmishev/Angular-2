@@ -34,7 +34,7 @@ export class JwtInterceptor implements HttpInterceptor {
         if (res instanceof HttpResponse && res.body.token) {
           localStorage.setItem('currentUser', JSON.stringify({
             "username": res.body.user.name,
-            "authtoken": res.body.authtoken
+            "authtoken": res.body.token
           }));
         }
 
@@ -44,12 +44,17 @@ export class JwtInterceptor implements HttpInterceptor {
         }
 
         if (res instanceof HttpResponse && res.body.success && res.url.endsWith('login')) {
-          this.toastr.success(res.body.message,'Success!');
+          this.toastr.success(res.body.message, 'Success!');
           this.router.navigate(['/furniture/all']);
         }
 
         if (res instanceof HttpResponse && res.body.success && res.url.endsWith('create')) {
-          this.toastr.success(res.body.message,'Success!');
+          this.toastr.success(res.body.message, 'Success!');
+          this.router.navigate(['/furniture/all']);
+        }
+
+        if (res instanceof HttpResponse && res.body.success && request.method === 'DELETE') {
+          this.toastr.success(res.body.message, 'Success!');
           this.router.navigate(['/furniture/all']);
         }
       }));
