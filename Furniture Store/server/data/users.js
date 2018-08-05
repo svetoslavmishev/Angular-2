@@ -6,6 +6,11 @@ module.exports = {
   save: (user) => {
     const id = Object.keys(usersById).length + 1
     user.id = id
+    user.roles = [];
+
+    if (Object.keys(usersById).length === 0) {
+      user.roles.push('Admin');
+    }
 
     usersById[id] = user
     usersByEmail[user.email] = user
@@ -15,5 +20,8 @@ module.exports = {
   },
   findById: (id) => {
     return usersById[id]
+  },
+  findAll() {
+	return usersById;
   }
 }

@@ -1,6 +1,7 @@
 const express = require('express')
 const passport = require('passport')
 const validator = require('validator')
+const userData = require('../data/users');
 
 const router = new express.Router()
 

@@ -8,30 +8,18 @@ import { ToastrModule } from 'ngx-toastr';
 
 import { AppComponent } from './app.component';
 import { NavigationComponent } from './navigation/navigation.component';
-import { SigninComponent } from './authentication/signin/signin.component';
-import { SignupComponent } from './authentication/signup/signup.component';
 import { HomeComponent } from './home/home.component';
-import { AuthService } from './authentication/auth.service';
 import { JwtInterceptor } from './interceptors/jwt.interceptor';
 import { ErrorIntercptor } from './interceptors/error.interceprot';
-import { AllFurnitureComponent } from './furniture/all-furniture/all-furniture.component';
-import { CreateFurnitureComponent } from './furniture/create-furniture/create-furniture.component';
-import { FurnitureDetailsComponent } from './furniture/furniture-details/furniture-details.component';
-import { MyFurnitureComponent } from './furniture/my-furniture/my-furniture.component';
-import { FurnitureService } from './furniture/furniture.service';
-import { CustomFormsModule } from '../../node_modules/ng2-validation';
+import { CustomFormsModule } from 'ng2-validation';
+import { AuthModule } from './authentication/auth.module';
+import { FurnitureModule } from './furniture/furniture.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavigationComponent,
-    SigninComponent,
-    SignupComponent,
-    HomeComponent,
-    AllFurnitureComponent,
-    CreateFurnitureComponent,
-    FurnitureDetailsComponent,
-    MyFurnitureComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -40,10 +28,11 @@ import { CustomFormsModule } from '../../node_modules/ng2-validation';
     HttpClientModule,
     BrowserAnimationsModule,
     CustomFormsModule,
+    AuthModule,
+    FurnitureModule,
     ToastrModule.forRoot()
   ],
   providers: [
-    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorIntercptor,
@@ -53,8 +42,7 @@ import { CustomFormsModule } from '../../node_modules/ng2-validation';
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
       multi: true
-    },
-    FurnitureService
+    }
   ],
   bootstrap: [AppComponent]
 })

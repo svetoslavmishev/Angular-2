@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FurnitureService } from '../furniture.service';
 import { FurnitureModel } from '../models/furniture.model';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-all-furniture',
@@ -10,10 +10,16 @@ import { Observable } from '../../../../node_modules/rxjs';
 })
 export class AllFurnitureComponent implements OnInit {
   furnitures$: Observable<FurnitureModel[]>;
+  pageSize: number = 4;
+  currentPage: number = 1;
 
   constructor(private furnitureService: FurnitureService) { }
 
   ngOnInit() {
-    this.furnitures$ = this.furnitureService.getAllFurnitures();      
+    this.furnitures$ = this.furnitureService.getAllFurnitures();
+  }
+
+  pageChanged(page) {
+    this.currentPage = page;
   }
 }

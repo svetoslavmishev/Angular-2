@@ -6,12 +6,16 @@
     </div>
   </div>
   <div class="row space-top">
-    <div class="col-md-3" *ngFor="let furniture of furnitures$ | async">
+    <div class="col-md-3" *ngFor="let furniture of furnitures$ | async | paginate: {
+      id: 'allFurniture' ,
+      itemsPerPage: pageSize,
+      currentPage: currentPage 
+    }">
       <div class="card text-white bg-primary">
         <div class="card-body">
           <blockquote class="card-blockquote">
-            <img src="{{furniture.image}}" class="image-size"/>
-            <p>{{furniture.description}}</p>            
+            <img src="{{furniture.image}}" class="image-size" />
+            <p>{{furniture.description}}</p>
             <div class="pull-right">
               <a routerLink="/furniture/details/{{furniture.id}}" class="btn btn-info">Details</a>
             </div>
@@ -20,4 +24,16 @@
       </div>
     </div>
   </div>
+  <pagination-controls
+    id="allFurniture" 
+    (pageChange)="pageChanged($event)" 
+    maxSize="9" 
+    directionLinks="true" 
+    autoHide="true" 
+    previousLabel="Previous"
+    nextLabel="Next" 
+    screenReaderPaginationLabel="Pagination" 
+    screenReaderPageLabel="page" 
+    screenReaderCurrentLabel="You're on page">
+  </pagination-controls>
 </div>

@@ -10,9 +10,7 @@ const detailsUrl = `${baseUrl}/furniture/details/`;
 const myUrl = `${baseUrl}/furniture/mine`;
 const deleteUrl = `${baseUrl}/furniture/delete/`;
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class FurnitureService {
 
   constructor(private http: HttpClient) { }

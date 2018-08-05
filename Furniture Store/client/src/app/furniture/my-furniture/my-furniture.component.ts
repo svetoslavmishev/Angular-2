@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FurnitureService } from '../furniture.service';
 import { FurnitureModel } from '../models/furniture.model';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-my-furniture',
@@ -10,6 +10,8 @@ import { Observable } from '../../../../node_modules/rxjs';
 })
 export class MyFurnitureComponent implements OnInit {
   furnitures$: Observable<FurnitureModel[]>;
+  pageSize: number = 4;
+  currentPage: number = 1;
 
   constructor(private myFurnitureService: FurnitureService) { }
 
@@ -20,5 +22,9 @@ export class MyFurnitureComponent implements OnInit {
   delete(id: string) {
     this.myFurnitureService.deleteFurniture(id)
       .subscribe();
+  }
+
+  pageChanged(page) {
+    this.currentPage = page;
   }
 }

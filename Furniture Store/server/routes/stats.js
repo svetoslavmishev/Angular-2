@@ -14,4 +14,12 @@ router.get('/', (req, res) => {
   })
 })
 
+router.get('/users', (req, res) => {
+  const users = usersData.findAll()
+
+  res.status(200).json({
+    users
+  })
+})
+
 module.exports = router
