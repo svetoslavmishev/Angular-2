@@ -58,6 +58,11 @@ export class JwtInterceptor implements HttpInterceptor {
           this.toastr.success(res.body.message, 'Success!');
           this.router.navigate(['/furniture/all']);
         }
+
+        if (res instanceof HttpResponse && res.body.success && request.method === 'PUT') {
+          this.toastr.success(res.body.message, 'Success!');
+          this.router.navigate(['/furniture/all']);
+        }
       }));
   }
 }

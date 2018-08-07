@@ -9,6 +9,8 @@ const allUrl = `${baseUrl}/furniture/all`;
 const detailsUrl = `${baseUrl}/furniture/details/`;
 const myUrl = `${baseUrl}/furniture/mine`;
 const deleteUrl = `${baseUrl}/furniture/delete/`;
+const getFurnitureByIdUrl = `${baseUrl}/furniture/`;
+const editFurnitureByIdUrl = `${baseUrl}/furniture/edit/`;
 
 @Injectable()
 export class FurnitureService {
@@ -33,5 +35,13 @@ export class FurnitureService {
 
   deleteFurniture(id: string) {
     return this.http.delete(deleteUrl + id);
+  }
+
+  getBiId(id: string) {
+    return this.http.get<FurnitureModel>(getFurnitureByIdUrl + id);
+  }
+
+  editFurniture(id: string, data: FurnitureModel) {
+    return this.http.put<FurnitureModel>(editFurnitureByIdUrl + id, data);
   }
 }

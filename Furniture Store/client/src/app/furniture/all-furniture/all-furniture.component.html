@@ -18,22 +18,15 @@
             <p>{{furniture.description}}</p>
             <div class="pull-right">
               <a routerLink="/furniture/details/{{furniture.id}}" class="btn btn-info">Details</a>
+              <a *ngIf="authService.isAdmin()" routerLink="/furniture/edit/{{furniture.id}}" class="btn btn-info">Edit</a>
+              <a *ngIf="authService.isAdmin()" (click)="delete(furniture.id)" class="btn btn-danger">Delete</a>
             </div>
           </blockquote>
         </div>
       </div>
     </div>
   </div>
-  <pagination-controls
-    id="allFurniture" 
-    (pageChange)="pageChanged($event)" 
-    maxSize="9" 
-    directionLinks="true" 
-    autoHide="true" 
-    previousLabel="Previous"
-    nextLabel="Next" 
-    screenReaderPaginationLabel="Pagination" 
-    screenReaderPageLabel="page" 
-    screenReaderCurrentLabel="You're on page">
+  <pagination-controls id="allFurniture" (pageChange)="pageChanged($event)" maxSize="9" directionLinks="true" autoHide="true"
+    previousLabel="Previous" nextLabel="Next" screenReaderPaginationLabel="Pagination" screenReaderPageLabel="page" screenReaderCurrentLabel="You're on page">
   </pagination-controls>
 </div>
