@@ -1,0 +1,32 @@
+<div class="container col-lg-4">
+    <h3 class="text-center">Sign Up</h3>
+    <form (ngSubmit)="signUp()" [formGroup]="signupForm">
+      <div class="form-group">
+        <label for="username">Username</label>
+        <input type="text" class="form-control" formControlName="username">
+  
+        <div [hidden]="signupForm.get('username').valid || signupForm.get('username').pristine" class="alert alert-danger">
+          Please provide your name
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="text" class="form-control" formControlName="email">
+  
+        <div [hidden]="signupForm.get('email').valid || signupForm.get('email').pristine" class="alert alert-danger">
+          Please provide a correct email address
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="password">Password</label>
+        <input type="password" class="form-control" formControlName="password">
+  
+        <div [hidden]="signupForm.get('password').valid || signupForm.get('password').pristine" class="alert alert-danger">
+          Password must have at least 6 characters
+        </div>
+      </div>
+      <button type="submit" class="btn btn-dark" [disabled]="signupForm.invalid">Sign Up</button>
+    </form>
+  </div>

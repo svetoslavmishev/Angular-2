@@ -1,0 +1,22 @@
+<div class="container col-lg-4">
+  <h3 class="text-center">Sign In</h3>
+  <form (ngSubmit)="signIn()" [formGroup]="signinForm">
+    <div class="form-group">
+      <label for="email" class="lead">Email</label>
+      <input type="text" class="form-control" formControlName="email">
+
+      <div [hidden]="signinForm.get('email').valid || signinForm.get('email').pristine" class="alert alert-danger">
+        Please provide a correct email address
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="password" class="lead">Password</label>
+      <input type="password" class="form-control" formControlName="password">
+
+      <div [hidden]="signinForm.get('password').valid || signinForm.get('password').pristine" class="alert alert-danger">
+        Password must have at least 6 characters
+      </div>
+    </div>
+    <button type="submit" class="btn btn-dark" [disabled]="signinForm.invalid">Sign In</button>
+  </form>
+</div>
