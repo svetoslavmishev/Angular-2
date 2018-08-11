@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../../../core/services/authentication/auth.service';
+import { Observable } from '../../../../../node_modules/rxjs';
+
 
 @Component({
   selector: 'app-signup-form',
@@ -12,9 +15,19 @@ export class SignupFormComponent implements OnInit {
     "email": new FormControl('', [Validators.required, Validators.pattern('^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$')]),
     "password": new FormControl('', [Validators.required, Validators.minLength(6)])
   });
-  constructor() { }
+
+  constructor(private authService: AuthService) { }
 
   ngOnInit() {
   }
 
+  signUp() {
+
+    
+
+    // this.authService.register(this.signupForm.value)
+    //   .subscribe(data => {
+    //     console.log(data);
+    //   });
+  }
 }
