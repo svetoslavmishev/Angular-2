@@ -4,9 +4,9 @@
     <a class="p-2 text-dark" routerLink="/">Home</a>
     <a class="p-2 text-dark" routerLink="/">Enterprise</a>
     <a class="p-2 text-dark" routerLink="/">Support</a>
-    <a class="p-2 text-dark" routerLink="/">Logout</a>
+    <a class="btn btn-outline-primary" *ngIf="authService.isAuthenticated()" (click)="logout()">Logout</a>
   </nav>
-  <a class="btn btn-outline-primary" routerLink="/auth/signin">Sign in</a>
+  <a *ngIf="!authService.isAuthenticated()" class="btn btn-outline-primary" routerLink="/auth/signin">Sign in</a>
   &nbsp;&nbsp;&nbsp;&nbsp;
-  <a class="btn btn-outline-primary" routerLink="/auth/signup">Sign up</a>
+  <a *ngIf="!authService.isAuthenticated()" class="btn btn-outline-primary" routerLink="/auth/signup">Sign up</a>
 </div>

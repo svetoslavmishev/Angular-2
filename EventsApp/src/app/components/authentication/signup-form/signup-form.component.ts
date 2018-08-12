@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { AuthService } from '../../../core/services/authentication/auth.service';
-import { Observable } from '../../../../../node_modules/rxjs';
-
 
 @Component({
   selector: 'app-signup-form',
@@ -22,12 +20,8 @@ export class SignupFormComponent implements OnInit {
   }
 
   signUp() {
-
-    
-
-    // this.authService.register(this.signupForm.value)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   });
+    this.authService
+      .register(this.signupForm.value)
+      .subscribe();
   }
 }

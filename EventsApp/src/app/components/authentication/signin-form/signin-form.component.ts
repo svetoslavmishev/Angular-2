@@ -9,7 +9,7 @@ import { AuthService } from '../../../core/services/authentication/auth.service'
 })
 export class SigninFormComponent implements OnInit {
   signinForm = new FormGroup({
-    "email": new FormControl('', [Validators.required, Validators.pattern('^([a-zA-Z0-9_.+-])+@(([a-zA-Z0-9-])+.)+([a-zA-Z0-9]{2,4})+$')]),
+    "username": new FormControl('', [Validators.required]),
     "password": new FormControl('', [Validators.required, Validators.minLength(6)])
   });
 
@@ -18,13 +18,9 @@ export class SigninFormComponent implements OnInit {
   ngOnInit() {
   }
 
-
   signIn() {
-
-
-    // this.authService.login(this.signinForm.value)
-    //   .subscribe(data => {
-    //     console.log(data);
-    //   });
+    this.authService
+      .login(this.signinForm.value)
+      .subscribe();
   }
 }

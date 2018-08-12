@@ -3,11 +3,10 @@ import { HttpClient } from '@angular/common/http';
 import { SigninInputModel } from '../../models/input-models/signin-input.model';
 import { SignupInputModel } from '../../models/input-models/signup-input.model';
 
-const appKey = "kid_BJSzAfiHX";
-const appSecret = "6ef2dc95b4bc426eaba9d08574e768c9";
+const appKey = "kid_rymYd4nrm";
 const signUpUrl = `https://baas.kinvey.com/user/${appKey}`;
 const signInUrl = `https://baas.kinvey.com/user/${appKey}/login`;
-//const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
+const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -22,7 +21,7 @@ export class AuthService {
   };
 
   logout() {
-    localStorage.clear();
+    return this.http.post(logoutUrl, '');    
   };
 
   isAuthenticated(): boolean {
