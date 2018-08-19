@@ -1,19 +1,21 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { RouterModule, Router } from "@angular/router";
 import { AuthenticationModule } from './components/authentication/authentication.module';
 import { SharedModule } from './components/shared/shared.module';
 import { ServicesModule } from './core/services/services.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { NewsModule } from './components/news/news.module';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { routes } from './app.routing';
+import { AppRoutingModule } from './app.routing';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { AuthService } from './core/services/authentication/auth.service';
+import { ErrorIntercptor } from './core/interceptors/error.interceptor';
+import { RouterModule } from '../../node_modules/@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -25,16 +27,20 @@ import { AuthService } from './core/services/authentication/auth.service';
     AuthenticationModule,
     SharedModule,
     ServicesModule,
-
-    RouterModule.forRoot(routes),
     ToastrModule.forRoot(),
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    NewsModule,
+    AppRoutingModule
   ],
   providers: [
-    AuthService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: JwtInterceptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorIntercptor,
       multi: true
     }
   ],

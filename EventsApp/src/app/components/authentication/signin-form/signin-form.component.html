@@ -4,7 +4,6 @@
     <div class="form-group">
       <label for="email" class="lead">Username</label>
       <input type="text" class="form-control" formControlName="username">
-
       <div [hidden]="signinForm.get('username').valid || signinForm.get('username').pristine" class="alert alert-danger">
         Please provide a correct email address
       </div>
@@ -17,6 +16,19 @@
         Password must have at least 6 characters
       </div>
     </div>
-    <button type="submit" class="btn btn-dark" [disabled]="signinForm.invalid">Sign In</button>
+    <button type="submit" class="col-md-12 text-center btn btn-dark btn-md" [disabled]="signinForm.invalid">Sign In</button>
   </form>
 </div>
+
+
+
+<!-- <form class="text-center border border-light p-5">
+  <p class="h4 mb-4">Subscribe</p>
+  <p>Join our mailing list. We write rarely, but only the best content.</p>
+  <p>
+    <a href="" target="_blank">See the last newsletter</a>
+  </p>
+  <input type="text" id="defaultSubscriptionFormPassword" class="form-control mb-4" placeholder="Name">
+  <input type="email" id="defaultSubscriptionFormEmail" class="form-control mb-4" placeholder="E-mail">
+  <button class="btn btn-info btn-block" type="submit" [disabled]="signinForm.invalid">Sign in</button>
+</form> -->
