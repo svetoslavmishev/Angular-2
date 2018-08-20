@@ -14,8 +14,8 @@ import { AppRoutingModule } from './app.routing';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
-import { RouterModule } from '../../node_modules/@angular/router';
-import { NgxPaginationModule } from '../../node_modules/ngx-pagination';
+import { RouterModule } from '@angular/router';
+import { NgxPaginationModule } from 'ngx-pagination';
 
 
 @NgModule({

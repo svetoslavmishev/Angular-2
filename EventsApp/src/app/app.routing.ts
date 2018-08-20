@@ -1,4 +1,4 @@
-import { NgModule } from '../../node_modules/@angular/core';
+import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SigninFormComponent } from './components/authentication/signin-form/signin-form.component';
