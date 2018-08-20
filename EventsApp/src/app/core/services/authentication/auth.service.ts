@@ -21,10 +21,17 @@ export class AuthService {
   };
 
   logout() {
-    return this.http.post(logoutUrl, '');    
+    return this.http.post(logoutUrl, '');
   };
 
   isAuthenticated(): boolean {
     return localStorage.getItem('currentUser') !== null;
   };
+
+  getAuthenticatedUsername() {
+    if (localStorage.getItem('currentUser') !== null) {
+      let user = JSON.parse(localStorage.getItem('currentUser'));
+      return user.username;
+    }
+  }
 }

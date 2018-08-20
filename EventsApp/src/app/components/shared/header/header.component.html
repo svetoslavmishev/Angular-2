@@ -1,6 +1,6 @@
-<div class="d-flex flex-column flex-md-row align-items-center p-2 px-md-4 mb-3 bg-white border-bottom shadow-sm">
+<div class="d-flex flex-column flex-md-row justify-content-end p-2 px-md-4 mb-3 bg-white border-bottom shadow-sm">
   <nav class="navbar navbar-expand-md">
-    <img class="my-0" src="assets/images/events-logo.png" style="height: 60px;" alt="event-logo">
+    <img align="center" class="my-0" src="assets/images/events-logo.png" style="height: 60px;" alt="event-logo">
     <a class="navbar-toggler text-dark p-3" type="button" data-toggle="collapse" data-target="#navbarsExample04" aria-controls="navbarsExample04"
       aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -26,13 +26,14 @@
         </li>
         <li *ngIf="authService.isAuthenticated()" class="p-2 nav-item">
           <a class="btn btn-outline-primary" (click)="logout()">Logout</a>
-          <li>
-            <li *ngIf="!authService.isAuthenticated()" class="p-2 nav-item">
-              <a class="btn btn-outline-primary" routerLink="/auth/signin">Sign in</a>
-            </li>
-            <li *ngIf="!authService.isAuthenticated()" class="p-2 nav-item">
-              <a class="btn btn-outline-primary" routerLink="/auth/signup">Sign up</a>
-            </li>
+          <span *ngIf="authService.isAuthenticated()" class="text-dark p-3">Welcome,
+            <b>{{authService.getAuthenticatedUsername() | uppercase}}</b>!</span>
+          <li *ngIf="!authService.isAuthenticated()" class="p-2 nav-item">
+            <a class="btn btn-outline-primary" routerLink="/auth/signin">Sign in</a>
+          </li>
+          <li *ngIf="!authService.isAuthenticated()" class="p-2 nav-item">
+            <a class="btn btn-outline-primary" routerLink="/auth/signup">Sign up</a>
+          </li>
       </ul>
     </div>
   </nav>

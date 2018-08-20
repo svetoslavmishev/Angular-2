@@ -15,6 +15,7 @@ import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
 import { RouterModule } from '../../node_modules/@angular/router';
+import { NgxPaginationModule } from '../../node_modules/ngx-pagination';
 
 
 @NgModule({
@@ -30,7 +31,7 @@ import { RouterModule } from '../../node_modules/@angular/router';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NewsModule,
-    AppRoutingModule
+    AppRoutingModule    
   ],
   providers: [
     {

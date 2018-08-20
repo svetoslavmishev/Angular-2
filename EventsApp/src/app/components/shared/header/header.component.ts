@@ -16,9 +16,11 @@ export class HeaderComponent implements OnInit {
   }
 
   logout() {
-    this.authService.logout().subscribe(() => {
-      localStorage.clear();
-    });
+    this.authService
+      .logout()
+      .subscribe(() => {
+        localStorage.clear();
+      });
   }
 
   expandMenu() {
