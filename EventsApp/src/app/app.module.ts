@@ -6,17 +6,14 @@ import { ServicesModule } from './core/services/services.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsModule } from './components/news/news.module';
+import { AppRoutingModule } from './app.routing';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
 
-import { AppRoutingModule } from './app.routing';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
-import { RouterModule } from '@angular/router';
-import { NgxPaginationModule } from 'ngx-pagination';
-
 
 @NgModule({
   declarations: [
