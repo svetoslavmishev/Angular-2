@@ -13,7 +13,6 @@ export const routes: Routes = [
   { path: 'news', component: NewsListComponent },
   { path: 'auth/signin', component: SigninFormComponent },
   { path: 'auth/signup', component: SignupFormComponent },
-  //TODO => Add GUARDS
   { path: 'events', loadChildren: () => EventsRoutingModule }
 ];
 

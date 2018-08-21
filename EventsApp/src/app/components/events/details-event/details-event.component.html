@@ -1,0 +1,114 @@
+<!-- <div class="container">
+  <h1 class="text-center">
+    DETAILS
+  </h1>
+  <br/>
+</div>
+<div class="container" *ngIf="event$ | async as ev">
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card">
+        <img class="card-img-top img-fluid" src="{{ev.image}}" alt="Card image cap">
+        <div class="card-body">
+          <h4 class="card-title">
+            <b>{{ev.title}}</b>
+          </h4>
+          <p class="card-text">{{ev.description}}</p>
+          <hr/>
+          <p class="card-text">{{ev.start | date:'mediumDate'}} / {{ev.start | date:'shortTime'}}
+            <li class="badge badge-pill badge-primary"># {{ev.categories}}</li>
+          </p>
+          <button type="button" class="btn btn-outline-primary" routerLink="/events/details/{{ev._id}}">REGISTER</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div> -->
+
+
+
+<div class="card" style="margin: 50px;">
+  <div class="row no-gutters" style="margin: 50px;" *ngIf="event$ | async as ev">
+    <aside class="col-sm-5 border-right">
+      <article class="gallery-wrap">
+        <div class="gutters">
+          <img class="col" src="{{ev.image}}">
+        </div>
+        <!-- slider-product.// -->
+      </article>
+
+      <!-- gallery-wrap .end// -->
+    </aside>
+    <aside class="col-sm-7">
+      <h4>
+        <span class="badge badge-primary right">{{ev.startDate | date:'fullDate'}}</span>
+      </h4>
+      <article class="p-5">
+        <h3 class="title mb-3">{{ev.title}}
+          <span class="badge badge-warning">{{ev.status}}</span>
+        </h3>
+        <dl>
+          <dt>Description</dt>
+          <dd>
+            <p>{{ev.description}}</p>
+          </dd>
+        </dl>
+        <dl class="row">
+          <dt class="col-sm-3">Organizer</dt>
+          <dd class="col-sm-9">by {{ev.organizer}}</dd>
+
+          <dt class="col-sm-3">Date</dt>
+          <dd class="col-sm-9">{{ev.startDate | date:'longDate'}}</dd>
+
+          <dt class="col-sm-3">Time</dt>
+          <dd class="col-sm-9">{{ev.startTime}}</dd>
+
+          <dt class="col-sm-3">Venue</dt>
+          <dd class="col-sm-9">{{ev.venue}}</dd>
+
+          <dt class="col-sm-3">Capacity</dt>
+          <dd class="col-sm-9">{{ev.capacity}}</dd>
+
+          <dt class="col-sm-3">Tag</dt>
+          <li class="badge badge-pill badge-primary"># {{ev.category}}</li>
+        </dl>
+        <div class="rating-wrap">
+
+          <h2>Star Rating</h2>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
+          <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
+
+          <ul class="rating-stars">
+            <li style="width:80%" class="stars-active">
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+            </li>
+            <li>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+              <i class="fa fa-star"></i>
+            </li>
+          </ul>
+          <div class="label-rating">132 reviews</div>
+          <div class="label-rating">154 orders </div>
+        </div>
+        <!-- rating-wrap.// -->
+        <hr>
+        <a href="#" class="btn  btn-outline-primary">
+          <i class="fas fa-shopping-cart"></i> Add to cart </a>
+      </article>
+      <!-- card-body.// -->
+    </aside>
+    <!-- col.// -->
+  </div>
+  <!-- row.// -->
+</div>
+<!-- card.// -->

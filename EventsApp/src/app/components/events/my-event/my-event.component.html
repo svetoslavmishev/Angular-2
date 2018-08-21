@@ -1,0 +1,44 @@
+<div class="container">
+  <h1 class="text-center lead">
+    My next event experience
+  </h1>
+  <br/>
+</div>
+<div class="container">
+  <div class="row">
+    <div class="col-md-4" *ngFor="let e of events$ | async | paginate : {
+      id: 'allEvents',
+      itemsPerPage: pageSize,
+      currentPage: currentPage 
+    }">
+      <div class="card">
+        <div class="text-center">
+          <img class="card-img-top img-fluid" src="{{e.image}}" alt="Card image cap">
+          <button type="button" class="btn btn-outline-danger" (click)="delete(e._id)" style="margin: 10px; border-radius: 30px;">
+            Delete
+            <i class="fas fa-trash-alt" (click)="delete(e._id)"></i>
+          </button>
+          <button type="button" class="btn btn-outline-success" routerLink="/events/edit/{{e._id}}" style="margin: 1opx; border-radius: 30px;">
+            Edit
+            <i class="fas fa-pencil-alt"></i>
+          </button>
+        </div>
+        <div class="card-body">
+          <h4 class="card-title">
+            <b>{{e.name}}</b>
+          </h4>
+          <li class="badge badge-pill badge-primary"># {{e.category}}</li>
+          <p class="card-text">{{e.description | slice:0:100}} . . .</p>
+          <hr/>
+          <p class="card-text-right">{{e.startDate | date:'mediumDate'}} | {{e.startTime}} (EEST)</p>
+          <button type="button" class="btn btn-outline-primary" routerLink="/events/details/{{e._id}}">Read more</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="pagination justify-content-center" style="padding: 30px;" *ngIf="events$ | async">
+    <pagination-controls id="allEvents" class="my-pagination" (pageChange)="pageChanged($event)" maxSize="10" directionLinks="true"
+      autoHide="true" responsive="true" previousLabel="Previous" nextLabel="Next">
+    </pagination-controls>
+  </div>
+</div>
