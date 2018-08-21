@@ -5,7 +5,8 @@ import { SigninFormComponent } from './components/authentication/signin-form/sig
 import { SignupFormComponent } from './components/authentication/signup-form/signup-form.component';
 import { NewsListComponent } from './components/news/news-list/news-list.component';
 import { EventsRoutingModule } from './components/events/events-routing.module';
-import { EventsModule } from './components/events/events.module';
+import { AuthGuard } from './core/guards/auth.guard';
+import { AdminGuard } from './core/guards/admin.guard';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -13,7 +14,8 @@ export const routes: Routes = [
   { path: 'news', component: NewsListComponent },
   { path: 'auth/signin', component: SigninFormComponent },
   { path: 'auth/signup', component: SignupFormComponent },
-  { path: 'events', loadChildren: () => EventsRoutingModule }
+  { path: 'auth/dashboard', canActivate: [AdminGuard], component: HomeComponent },
+  { path: 'events', canActivate: [AuthGuard], loadChildren: () => EventsRoutingModule }
 ];
 
 @NgModule({

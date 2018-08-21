@@ -79,6 +79,11 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['/events/all']);
         }
 
+        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT') {
+          this.toastr.success('Event editted successfully!', 'Success!');
+          this.router.navigate(['/events/my']);
+        }
+
         // if (res instanceof HttpResponse && res.body.success && request.method === 'DELETE') {
         //   this.toastr.success(res.body.message, 'Success!');
         //   this.router.navigate(['/furniture/all']);

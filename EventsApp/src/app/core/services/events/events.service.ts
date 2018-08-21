@@ -32,6 +32,14 @@ export class EventsService {
     return this.http.get<EventModel[]>(eventsUrl + queryCreatorDateSort);
   }
 
+  getEventById(id: string) {
+    return this.http.get(eventsUrl + id);
+  }
+
+  editEvent(id: string, data) {
+    return this.http.put(eventsUrl + id, data);
+  }
+
   deleteEvent(id: string) {
     return this.http.delete(eventsUrl + id);
   }

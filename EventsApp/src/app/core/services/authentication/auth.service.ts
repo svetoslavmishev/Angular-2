@@ -28,6 +28,14 @@ export class AuthService {
     return localStorage.getItem('currentUser') !== null;
   };
 
+  isAdministrator(): boolean {
+    if (localStorage.getItem('currentUser') !== null) {
+      let user = JSON.parse(localStorage.getItem('currentUser'));
+
+      return user.roles ? true : false;
+    }
+  };
+
   getAuthenticatedUsername() {
     if (localStorage.getItem('currentUser') !== null) {
       let user = JSON.parse(localStorage.getItem('currentUser'));

@@ -46,7 +46,7 @@
                   <label class="col-lg-3 col-form-label form-control-label">Description</label>
                   <div class="col-lg-9">
                     <textarea class="form-control" type="text" value="" formControlName="description"></textarea>
-                    
+
                     <div [hidden]="createForm.get('description').valid || createForm.get('description').pristine" class="alert alert-danger">
                       Description must be more than 50 symbols
                     </div>
@@ -83,7 +83,7 @@
                   <label class="col-lg-3 col-form-label form-control-label">Capacity</label>
                   <div class="col-lg-9">
                     <input class="form-control" type="number" placeholder="1" formControlName="capacity">
-                    
+
                     <div [hidden]="createForm.get('capacity').valid || createForm.get('capacity').pristine" class="alert alert-danger">
                       Capacity must be a positive number
                     </div>
@@ -133,10 +133,9 @@
                 <div class="form-group row">
                   <label class="col-lg-3 col-form-label form-control-label"></label>
                   <div class="col-lg-9">
-                    <input type="submit"
-                     class="btn btn-outline-primary"
-                     value="Create"
-                     [disabled]="createForm.invalid">
+                    <button type="submit" class="btn btn-outline-primary" value="Create" [disabled]="createForm.invalid">
+                      Create <i class="fas fa-plus-circle"></i>
+                    </button>
                   </div>
                 </div>
               </form>

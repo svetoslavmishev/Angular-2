@@ -1,3 +1,153 @@
-<p>
-  edit-event works!
-</p>
+<div class="container py-5">
+  <div class="row">
+    <div class="col-md-12">
+      <div class="row">
+        <div class="col-md-8 offset-md-2">
+          <div class="card card-outline-secondary">
+            <div class="card-header">
+              <h2 class="mb-1 lead">Edit Event</h2>
+            </div>
+            <div class="card-body">
+              <form class="form" (ngSubmit)="edit()" [formGroup]="editForm">
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Title</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" placeholder="Event title" formControlName="title">
+
+                    <div [hidden]="editForm.get('title').valid || editForm.get('title').pristine" class="alert alert-danger">
+                      Please provide your event title
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Organizer</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" placeholder="Ivan Ivanov" formControlName="organizer">
+
+                    <div [hidden]="editForm.get('organizer').valid || editForm.get('organizer').pristine" class="alert alert-danger">
+                      Please provide organizer
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Venue</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="text" placeholder="Sofia" formControlName="venue">
+
+                    <div [hidden]="editForm.get('venue').valid || editForm.get('venue').pristine" class="alert alert-danger">
+                      Please provide venue. Venue must be less than 50 symbols
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Description</label>
+                  <div class="col-lg-9">
+                    <textarea class="form-control" type="text" value="" formControlName="description"></textarea>
+
+                    <div [hidden]="editForm.get('description').valid || editForm.get('description').pristine" class="alert alert-danger">
+                      Description must be more than 50 symbols
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Image</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="url" value="" formControlName="image">
+
+                    <div [hidden]="editForm.get('image').valid || editForm.get('image').pristine" class="alert alert-danger">
+                      Please provide image url
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Category</label>
+                  <div class="col-lg-9">
+                    <select id="user_time_zone" class="form-control" formControlName="category">
+                      <option value="Science&Tech">Science&Tech</option>
+                      <option value="Conference">Conference</option>
+                      <option value="Things to do in Sofia">Things to do in Sofia</option>
+                      <option value="Festival">Festival</option>
+                      <option value="Arts">Arts</option>
+                      <option value="Networking">Networking</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Capacity</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="number" placeholder="1" formControlName="capacity">
+
+                    <div [hidden]="editForm.get('capacity').valid || editForm.get('capacity').pristine" class="alert alert-danger">
+                      Capacity must be a positive number
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Start Date</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="date" value="startDate" formControlName="startDate">
+
+                    <div [hidden]="editForm.get('startDate').valid || editForm.get('startDate').pristine" class="alert alert-danger">
+                      Please provide valid date
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label" value="">Starting time (EEST)</label>
+                  <div class="col-lg-9">
+                    <input class="form-control" type="time" value="" formControlName="startTime">
+
+                    <div [hidden]="editForm.get('startTime').valid || editForm.get('startTime').pristine" class="alert alert-danger">
+                      Please provide valid starting time
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label">Status</label>
+                  <div class="col-lg-9">
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline1" value="live" class="custom-control-input" formControlName="status">
+                      <label class="custom-control-label" for="customRadioInline1">live</label>
+                    </div>
+                    <div class="custom-control custom-radio custom-control-inline">
+                      <input type="radio" id="customRadioInline2" value="recorded" class="custom-control-input" formControlName="status">
+                      <label class="custom-control-label" for="customRadioInline2">recorded</label>
+                    </div>
+
+                    <div [hidden]="editForm.get('status').valid || editForm.get('status').pristine" class="alert alert-danger">
+                      Please provide live or recorded status
+                    </div>
+
+                  </div>
+                </div>
+                <div class="form-group row">
+                  <label class="col-lg-3 col-form-label form-control-label"></label>
+                  <div class="col-lg-9">
+                    <button type="submit" class="btn btn-outline-primary" value="Create" [disabled]="editForm.invalid">
+                      Edit 
+                      <i class="fas fa-pencil-alt"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 offset-md-3">
+          <span class="anchor" id="formContact"></span>
+          <hr class="my-5">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

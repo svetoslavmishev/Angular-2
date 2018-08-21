@@ -14,19 +14,17 @@
       <div class="card">
         <div class="text-center">
           <img class="card-img-top img-fluid" src="{{e.image}}" alt="Card image cap">
-          <button type="button" class="btn btn-outline-danger" (click)="delete(e._id)" style="margin: 10px; border-radius: 30px;">
-            Delete
-            <i class="fas fa-trash-alt" (click)="delete(e._id)"></i>
+          <button type="button" class="btn btn-outline-danger" (click)="delete(e._id)" style="margin: 10px; border-radius: 25px;">
+            <i class="fas fa-trash" (click)="delete(e._id)"></i>
           </button>
-          <button type="button" class="btn btn-outline-success" routerLink="/events/edit/{{e._id}}" style="margin: 1opx; border-radius: 30px;">
-            Edit
-            <i class="fas fa-pencil-alt"></i>
+          <button type="button" class="btn btn-outline-success" routerLink="/events/edit/{{e._id}}" style="margin: 10px; border-radius: 25px;">
+            <i class="fas fa-pen"></i>
           </button>
         </div>
         <div class="card-body">
-          <h4 class="card-title">
-            <b>{{e.name}}</b>
-          </h4>
+          <h5 class="card-title">
+            <b>{{e.title}}</b>
+          </h5>
           <li class="badge badge-pill badge-primary"># {{e.category}}</li>
           <p class="card-text">{{e.description | slice:0:100}} . . .</p>
           <hr/>

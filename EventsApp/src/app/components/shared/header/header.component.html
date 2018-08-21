@@ -24,6 +24,9 @@
             <a class="dropdown-item" routerLink="events/create">Create</a>
           </div>
         </li>
+        <li *ngIf="authService.isAdministrator()" class="nav-item">
+          <a class="nav-link text-dark p-3" routerLink="/">Dashboard</a>
+        </li>
         <li *ngIf="authService.isAuthenticated()" class="p-2 nav-item">
           <a class="btn btn-outline-primary" (click)="logout()">Logout</a>
           <span *ngIf="authService.isAuthenticated()" class="text-dark p-3">Welcome,
