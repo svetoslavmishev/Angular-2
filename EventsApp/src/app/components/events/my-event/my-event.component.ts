@@ -13,10 +13,10 @@ export class MyEventComponent implements OnInit {
   pageSize: number = 3;
   currentPage: number = 1;
 
-  constructor(private eventsSerice: EventsService) { }
+  constructor(private eventsService: EventsService) { }
 
   ngOnInit() {
-    this.events$ = this.eventsSerice.getMyEvents();
+    this.events$ = this.eventsService.getMyEvents();
   }
 
   pageChanged(page) {
@@ -24,8 +24,10 @@ export class MyEventComponent implements OnInit {
   }
 
   delete(id: string) {
-    this.eventsSerice
+    this.eventsService
       .deleteEvent(id)
-      .subscribe();
+      .subscribe(() => {
+        this.events$ = this.eventsService.getMyEvents();
+      });
   }
 }

@@ -1,0 +1,87 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 ">
+      <div class="list-group ">
+        <a class="list-group-item list-group-item-action active lead">Dashboard</a>
+        <a href="#" class="list-group-item list-group-item-action">User Management</a>
+        <a href="#" class="list-group-item list-group-item-action">Used</a>
+        <a href="#" class="list-group-item list-group-item-action">Enquiry</a>
+        <a href="#" class="list-group-item list-group-item-action">Dealer</a>
+        <a href="#" class="list-group-item list-group-item-action">Media</a>
+        <a href="#" class="list-group-item list-group-item-action">Post</a>
+        <a href="#" class="list-group-item list-group-item-action">Category</a>
+        <a href="#" class="list-group-item list-group-item-action">New</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2 border-right">
+              <h4>User</h4>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-sm btn-outline-primary">Add User</button>
+            </div>
+
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover">
+                <thead class="bg-light ">
+                  <tr>
+                    <th><i class="fas fa-list-ol"></i></th>
+                    <th>Username</th>
+                    <th>Registered</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Events</th>
+                    <th>Edit</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let u of users$ | async; index as i">
+                  <tr>
+                    <td> {{i + 1}} </td>
+                    <td>
+                      <a href="#">
+                        <small>{{u.username}}</small>
+                      </a>
+                    </td>
+                    <td>
+                      <small>{{u._kmd.ect | date : 'medium'}}</small>
+                    </td>
+                    <td>
+                      <small>{{u.email}}</small>
+                    </td>
+                    <td *ngIf="u._kmd.roles">
+                      <small>Admin</small>
+                    </td>
+                    <td *ngIf="!u._kmd.roles">
+                      <small>User</small>
+                    </td>
+                    <td>
+                      <a href="#">
+                        <small>5</small>
+                      </a>
+                    </td>
+                    <td *ngIf="!u._kmd.roles">
+                      <a href="#">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>
+                      <a href="#">
+                        <i class="fa fa-eye"></i>
+                      </a>
+                      <button (click)="deleteUser(u._id)">
+                        <i class="fa fa-trash"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

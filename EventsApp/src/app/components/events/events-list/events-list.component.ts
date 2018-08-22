@@ -3,6 +3,15 @@ import { EventsService } from '../../../core/services/events/events.service';
 import { EventModel } from '../../../core/models/event-model/event.model';
 import { Observable } from 'rxjs';
 import { AuthService } from '../../../core/services/authentication/auth.service';
+import {
+  trigger,
+  transition,
+  style,
+  animate,
+  query,
+  stagger
+} from '@angular/animations';
+
 
 @Component({
   selector: 'app-events-list',
@@ -27,7 +36,11 @@ export class EventsListComponent implements OnInit {
     this.currentPage = page;
   }
 
-  //TODO DELETE AND EDIT EVENT FUNCTIONS
-
-
+  delete(id: string) {
+    this.eventsService
+      .deleteEvent(id)
+      .subscribe(() => {
+        this.events$ = this.eventsService.getAllEvents();
+      });
+  }
 }

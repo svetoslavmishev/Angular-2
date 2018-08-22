@@ -2,9 +2,10 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { SigninInputModel } from '../../models/input-models/signin-input.model';
 import { SignupInputModel } from '../../models/input-models/signup-input.model';
+import { retry } from '../../../../../node_modules/rxjs/operators';
 
 const appKey = "kid_rymYd4nrm";
-const signUpUrl = `https://baas.kinvey.com/user/${appKey}`;
+const userUrl = `https://baas.kinvey.com/user/${appKey}/`;
 const signInUrl = `https://baas.kinvey.com/user/${appKey}/login`;
 const logoutUrl = `https://baas.kinvey.com/user/${appKey}/_logout`;
 
@@ -13,7 +14,7 @@ export class AuthService {
   constructor(private http: HttpClient) { }
 
   register(body: SignupInputModel) {
-    return this.http.post(signUpUrl, body);
+    return this.http.post(userUrl, body);
   };
 
   login(body: SigninInputModel) {
@@ -41,5 +42,13 @@ export class AuthService {
       let user = JSON.parse(localStorage.getItem('currentUser'));
       return user.username;
     }
+  }
+
+  getAllUsers() {
+    return this.http.get(userUrl + '?query={}&sort={"_kmd.ect": 1}');
+  }
+
+  removeUser(id: string) {
+    return this.http.delete(userUrl + id + '?hard=true');
   }
 }

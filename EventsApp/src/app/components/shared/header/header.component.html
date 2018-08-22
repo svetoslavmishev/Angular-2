@@ -25,7 +25,7 @@
           </div>
         </li>
         <li *ngIf="authService.isAdministrator()" class="nav-item">
-          <a class="nav-link text-dark p-3" routerLink="/">Dashboard</a>
+          <a class="nav-link text-dark p-3" routerLink="auth/dashboard">Dashboard</a>
         </li>
         <li *ngIf="authService.isAuthenticated()" class="p-2 nav-item">
           <a class="btn btn-outline-primary" (click)="logout()">Logout</a>

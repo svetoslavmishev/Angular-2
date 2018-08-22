@@ -14,11 +14,13 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    DashboardComponent
   ],
   imports: [
     BrowserModule,

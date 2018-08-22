@@ -4,13 +4,17 @@ import { tap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { EventsService } from '../services/events/events.service';
 
 const appKey = "kid_rymYd4nrm";
 const appSecret = "91e94a2e95a34c539144bdd48fe3e35a";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
-  constructor(private toastr: ToastrService, private router: Router) { }
+  constructor(
+    private toastr: ToastrService,
+    private router: Router,
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentUser = (JSON.parse(localStorage.getItem('currentUser')));
@@ -76,7 +80,7 @@ export class JwtInterceptor implements HttpInterceptor {
 
         if (res instanceof HttpResponse && res.status === 200 && request.method === 'DELETE') {
           this.toastr.success('Event deleted successfully!', 'Success!');
-          this.router.navigate(['/events/all']);
+          //this.router.navigate(['/events/all']);
         }
 
         if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT') {
