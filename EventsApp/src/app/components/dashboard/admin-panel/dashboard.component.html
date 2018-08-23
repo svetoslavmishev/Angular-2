@@ -1,0 +1,84 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-3 ">
+      <div class="list-group ">
+        <a class="list-group-item list-group-item-action active lead">Dashboard</a>
+        <a href="/auth/usermanagement/create" class="list-group-item list-group-item-action">User Management</a>
+        <a href="#" class="list-group-item list-group-item-action">Used</a>
+      </div>
+    </div>
+    <div class="col-md-9">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-2 border-right">
+              <h4>User</h4>
+            </div>
+            <div class="col-md-6">
+              <button type="button" class="btn btn-sm btn-outline-primary">Add User</button>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12">
+              <table class="table table-hover">
+                <thead class="bg-light ">
+                  <tr>
+                    <th>
+                      <i class="fas fa-list-ol"></i>
+                    </th>
+                    <th>Username</th>
+                    <th>Registered</th>
+                    <th>Email</th>
+                    <th>Role</th>
+                    <th>Block/Unblock</th>
+                    <th>Edit</th>
+                  </tr>
+                </thead>
+                <tbody *ngFor="let u of users$ | async; index as i">
+                  <tr>
+                    <td> {{i + 1}} </td>
+                    <td>
+                      <a (click)="userInfo(u._id)">
+                        <small>{{u.username}} </small>
+                      </a>
+                    </td>
+                    <td>
+                      <small>{{u._kmd.ect | date : 'medium'}}</small>
+                    </td>
+                    <td>
+                      <small>{{u.email}}</small>
+                    </td>
+                    <td *ngIf="u._kmd.roles">
+                      <small>Admin</small>
+                    </td>
+                    <td *ngIf="!u._kmd.roles">
+                      <small>User</small>
+                    </td>
+                    <td>
+                      <button class="btn btn-outline-danger" *ngIf="!u._kmd.status && !u._kmd.roles" (click)="suspendUserProfile(u._id)">
+                        Block
+                        <i class="fas fa-user-lock"></i>
+                      </button>
+                      <button class="btn btn-outline-success" *ngIf="u._kmd.status" (click)="restoreUserProfile(u._id)">
+                        Unblock
+                        <i class="fas fa-lock-open"></i>
+                      </button>
+                    </td>
+                    <td *ngIf="!u._kmd.roles">
+                      <a routerLink="/">
+                        <i class="fas fa-pencil-alt"></i>
+                      </a>&nbsp;&nbsp;
+                      <a (click)="deleteUser(u._id)">
+                        <i class="fas fa-trash"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

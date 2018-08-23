@@ -4,10 +4,11 @@ import { tap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { EventsService } from '../services/events/events.service';
+//import { EventsService } from '../services/events/events.service';
 
 const appKey = "kid_rymYd4nrm";
 const appSecret = "91e94a2e95a34c539144bdd48fe3e35a";
+const masterSecret = "9dfd2cec4cd8471e839b3a4f5e9c4d25";
 
 @Injectable()
 export class JwtInterceptor implements HttpInterceptor {
@@ -34,11 +35,19 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    if (currentUser === null) {
+    if (currentUser === null || (currentUser.roles && this.router.url.endsWith('usermanagement/create'))) {
       request = request.clone({
         setHeaders: {
           'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
           'Content-Type': 'application/json'
+        }
+      });
+    }
+
+    if (currentUser && currentUser.roles && request.url.endsWith('/_restore')) {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': masterSecret
         }
       });
     }
@@ -62,6 +71,16 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/signin']);
         };
 
+        if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('usermanagement/create')) {
+          this.toastr.success('User created successfully!', "Success!");
+          this.router.navigate(['auth/dashboard']);
+        };
+
+        if (res instanceof HttpResponse && request.method === 'DELETE' && this.router.url.endsWith('auth/dashboard')) {
+          this.toastr.success('User deleted successfully!', "Success!");     
+          this.router.navigate(['auth/dashboard']);    
+        };
+
         if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('signin')) {
           this.toastr.success('You have successfully signed in!', "Success!");
           //TODO => SHOULD REDIRECT TO PAGE WITH EVENTS
@@ -73,7 +92,7 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/signin']);
         };
 
-        if (res instanceof HttpResponse && res.status === 201 && request.method === 'POST' && this.router.url.endsWith('create')) {
+        if (res instanceof HttpResponse && res.status === 201 && request.method === 'POST' && this.router.url.endsWith('events/create')) {
           this.toastr.success('New event created!', 'Success!');
           this.router.navigate(['/events/all']);
         }

@@ -11,16 +11,16 @@
       itemsPerPage: pageSize,
       currentPage: currentPage 
     }">
-    {{events$}}
       <div class="card">
         <div class="text-center">
           <img class="card-img-top img-fluid" src="{{e.image}}" alt="Card image cap">
           <button *ngIf="authService.isAdministrator()" type="button" class="btn btn-outline-danger" (click)="delete(e._id)" style="margin: 10px; border-radius: 25px;">
-              <i class="fas fa-trash" (click)="delete(e._id)"></i>
-            </button>
-            <button *ngIf="authService.isAdministrator()" type="button" class="btn btn-outline-success" routerLink="/events/edit/{{e._id}}" style="margin: 10px; border-radius: 25px;">
-              <i class="fas fa-pen"></i>
-            </button>
+            <i class="fas fa-trash" (click)="delete(e._id)"></i>
+          </button>
+          <button *ngIf="authService.isAdministrator()" type="button" class="btn btn-outline-success" routerLink="/events/edit/{{e._id}}"
+            style="margin: 10px; border-radius: 25px;">
+            <i class="fas fa-pen"></i>
+          </button>
         </div>
         <div class="card-body">
           <h5 class="card-title">

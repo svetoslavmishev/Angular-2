@@ -14,13 +14,12 @@ import { HomeComponent } from './components/home/home.component';
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardModule } from './components/dashboard/dashboard.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent,
-    DashboardComponent
+    HomeComponent
   ],
   imports: [
     BrowserModule,
@@ -30,7 +29,8 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NewsModule,
-    AppRoutingModule    
+    AppRoutingModule,
+    DashboardModule
   ],
   providers: [
     {
