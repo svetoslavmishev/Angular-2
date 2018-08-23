@@ -2,22 +2,22 @@
   <div class="row">
     <div class="col-md-3 ">
       <div class="list-group ">
-        <a class="list-group-item list-group-item-action active lead">Dashboard</a>
-        <a href="/auth/usermanagement/create" class="list-group-item list-group-item-action">User Management</a>
+        <a class="list-group-item list-group-item-action aoutline-active lead">Dashboard</a>
+        <a href="/auth/dashboard/create" class="list-group-item list-group-item-action">User Management</a>
         <a href="#" class="list-group-item list-group-item-action">Used</a>
       </div>
     </div>
     <div class="col-md-9">
       <div class="card">
         <div class="card-body">
-          <div class="row">
+          <!-- <div class="row">
             <div class="col-md-2 border-right">
               <h4>User</h4>
             </div>
             <div class="col-md-6">
               <button type="button" class="btn btn-sm btn-outline-primary">Add User</button>
             </div>
-          </div>
+          </div> -->
           <div class="row">
             <div class="col-md-12">
               <table class="table table-hover">
@@ -31,7 +31,7 @@
                     <th>Email</th>
                     <th>Role</th>
                     <th>Block/Unblock</th>
-                    <th>Edit</th>
+                    <th>Edit/Delete</th>
                   </tr>
                 </thead>
                 <tbody *ngFor="let u of users$ | async; index as i">
@@ -65,10 +65,10 @@
                       </button>
                     </td>
                     <td *ngIf="!u._kmd.roles">
-                      <a routerLink="/">
+                      <a routerLink="/auth/dashboard/edit/{{u._id}}" class="btn btn-outline-primary">
                         <i class="fas fa-pencil-alt"></i>
-                      </a>&nbsp;&nbsp;
-                      <a (click)="deleteUser(u._id)">
+                      </a>&nbsp;
+                      <a class="btn btn-outline-danger" (click)="deleteUser(u._id)">
                         <i class="fas fa-trash"></i>
                       </a>
                     </td>

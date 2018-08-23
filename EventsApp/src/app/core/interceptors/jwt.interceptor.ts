@@ -35,7 +35,7 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    if (currentUser === null || (currentUser.roles && this.router.url.endsWith('usermanagement/create'))) {
+    if (currentUser === null || (currentUser.roles && this.router.url.endsWith('dashboard/create'))) {
       request = request.clone({
         setHeaders: {
           'Authorization': `Basic ${btoa(`${appKey}:${appSecret}`)}`,
@@ -71,14 +71,19 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['/auth/signin']);
         };
 
-        if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('usermanagement/create')) {
+        if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('dashboard/create')) {
           this.toastr.success('User created successfully!', "Success!");
           this.router.navigate(['auth/dashboard']);
         };
 
+        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT' && this.router.url.match('/dashboard/edit/')) {
+          this.toastr.success('User updated successfully!', "Success!");
+          this.router.navigate(['auth/dashboard']);
+        };
+
         if (res instanceof HttpResponse && request.method === 'DELETE' && this.router.url.endsWith('auth/dashboard')) {
-          this.toastr.success('User deleted successfully!', "Success!");     
-          this.router.navigate(['auth/dashboard']);    
+          this.toastr.success('User deleted successfully!', "Success!");
+          this.router.navigate(['auth/dashboard']);
         };
 
         if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('signin')) {
@@ -102,15 +107,10 @@ export class JwtInterceptor implements HttpInterceptor {
           //this.router.navigate(['/events/all']);
         }
 
-        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT') {
+        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT' && this.router.url.match('/events/edit/')) {
           this.toastr.success('Event editted successfully!', 'Success!');
           this.router.navigate(['/events/my']);
         }
-
-        // if (res instanceof HttpResponse && res.body.success && request.method === 'DELETE') {
-        //   this.toastr.success(res.body.message, 'Success!');
-        //   this.router.navigate(['/furniture/all']);
-        // }
       }));
   }
 }

@@ -7,7 +7,7 @@
     </div>
     <div class="col-md-8 col-sm-6 col-xs-12 personal-info">
       <h3>Personal info</h3>
-      <form class="form-horizontal" (ngSubmit)="createUser()" [formGroup]="userForm">
+      <form class="form-horizontal" (ngSubmit)="updateUser()" [formGroup]="userForm">
         <div class="form-group">
           <label class="col-md-3 control-label">Username:*</label>
           <div class="col-md-8">
@@ -31,34 +31,9 @@
           </div>
         </div>
         <div class="form-group">
-          <label class="col-md-3 control-label">Password:*</label>
-          <div class="col-md-8">
-            <input class="form-control" value="112233" type="password" formControlName="password">
-
-            <div [hidden]="userForm.get('password').valid || userForm.get('password').pristine" class="alert alert-danger">
-              Password must have at least 6 characters
-            </div>
-
-          </div>
-        </div>
-        <!-- <div class="form-group">
-          <label class="col-md-3 control-label">Confirm password:</label>
-          <div class="col-md-8">
-            <input class="form-control" value="112233" type="password" formControlName="confirmPassword">
-
-            <div [hidden]="userForm.get('password').valid || userForm.get('password').pristine || userForm.get('password') === userForm.get('confirmPassword')">
-              Password must don't match
-            </div>
-
-          </div>
-        </div> -->
-        <div class="form-group">
           <label class="col-md-3 control-label"></label>
           <div class="col-md-8">
-            <button type="submit" class="col-md-12 center-block btn btn-primary btn-md" [disabled]="userForm.invalid">Create User</button>
-            &nbsp;
             <button type="submit" class="col-md-12 center-block btn btn-primary btn-md" [disabled]="userForm.invalid">Update User</button>
-
             <span></span>
           </div>
         </div>

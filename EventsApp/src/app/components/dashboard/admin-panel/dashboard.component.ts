@@ -13,7 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private authService: AuthService) { }
 
   ngOnInit() {
-    this.users$ = this.authService.getAllUsers();
+    this.refresh();
   }
 
   deleteUser(id: string) {

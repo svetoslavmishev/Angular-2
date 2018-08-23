@@ -9,6 +9,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { AdminGuard } from './core/guards/admin.guard';
 import { DashboardComponent } from './components/dashboard/admin-panel/dashboard.component';
 import { ManageUsersComponent } from './components/dashboard/manage-users/manage-users.component';
+import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
 
 
 export const routes: Routes = [
@@ -18,7 +19,8 @@ export const routes: Routes = [
   { path: 'auth/signin', component: SigninFormComponent },
   { path: 'auth/signup', component: SignupFormComponent },
   { path: 'auth/dashboard', canActivate: [AdminGuard], component: DashboardComponent },
-  { path: 'auth/usermanagement/create', component: ManageUsersComponent },
+  { path: 'auth/dashboard/create', component: ManageUsersComponent },
+  { path: 'auth/dashboard/edit/:id', component: EditUserComponent },
   { path: 'events', canActivate: [AuthGuard], loadChildren: () => EventsRoutingModule }
 ];
 

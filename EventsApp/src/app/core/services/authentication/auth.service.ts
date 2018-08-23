@@ -56,6 +56,11 @@ export class AuthService {
     return this.http.get(userUrl + id);
   }
 
+
+  editUser(id: string, body: SignupInputModel) {
+    return this.http.put(userUrl + id, body);
+  }
+
   suspendUser(id: string) {
     return this.http.delete(userUrl + id + '?soft=true');
   }
