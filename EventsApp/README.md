@@ -1,7 +1,7 @@
 ﻿![Screenshot](capture1.jpg)
 ![Screenshot](capture2.jpg)
 
-# SpaecialEvents
+# SpecialEvents
 
 This web application using Angular 6 framework with Node.js and Kinvey back-end. It presents public and free events with event ticketing and registration pages in minutes. The application allows users to browse, create, claim and promote local events.
 
