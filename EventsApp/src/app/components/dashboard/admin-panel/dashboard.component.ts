@@ -41,7 +41,9 @@ export class DashboardComponent implements OnInit {
   restoreUserProfile(id: string) {
     this.authService
       .restoreSuspendUSer(id)
-      .subscribe();
+      .subscribe(() => {
+        this.refresh();
+      });
   }
 
   refresh() {

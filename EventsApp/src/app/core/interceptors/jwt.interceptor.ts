@@ -4,7 +4,6 @@ import { tap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-//import { EventsService } from '../services/events/events.service';
 
 const appKey = "kid_rymYd4nrm";
 const appSecret = "91e94a2e95a34c539144bdd48fe3e35a";
@@ -14,17 +13,11 @@ const masterSecret = "9dfd2cec4cd8471e839b3a4f5e9c4d25";
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private toastr: ToastrService,
-    private router: Router,
-  ) { }
+    private router: Router
+  ) { };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentUser = (JSON.parse(localStorage.getItem('currentUser')));
-
-    // request = request.clone({
-    //   setHeaders: {
-    //     'Content-Type': 'application/json'
-    //   }
-    // });
 
     if (currentUser) {
       request = request.clone({
@@ -47,7 +40,8 @@ export class JwtInterceptor implements HttpInterceptor {
     if (currentUser && currentUser.roles && request.url.endsWith('/_restore')) {
       request = request.clone({
         setHeaders: {
-          'Authorization': masterSecret
+          'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
+          'Content-Type': 'application/json'
         }
       });
     }
@@ -81,7 +75,7 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['auth/dashboard']);
         };
 
-        if (res instanceof HttpResponse && request.method === 'DELETE' && this.router.url.endsWith('auth/dashboard')) {
+        if (res instanceof HttpResponse && request.method === 'DELETE' && request.url.endsWith('?hard=true')) {
           this.toastr.success('User deleted successfully!', "Success!");
           this.router.navigate(['auth/dashboard']);
         };
