@@ -20,6 +20,7 @@ export class CreateEventComponent implements OnInit {
     "startTime": new FormControl('', [Validators.required]),
     "status": new FormControl('', [Validators.required]),
     "category": new FormControl('Things to do in Sofia', [Validators.required]),
+    "orders": new FormControl('0')
   });
 
   constructor(private eventService: EventsService) { }

@@ -41,41 +41,16 @@
           <li class="badge badge-pill badge-primary"># {{ev.category}}</li>
         </dl>
         <div class="rating-wrap">
-
-          <h2>Star Rating</h2>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star checked"></span>
-          <span class="fa fa-star"></span>
-          <span class="fa fa-star"></span>
-
-          <ul class="rating-stars">
-            <li style="width:80%" class="stars-active">
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </li>
-            <li>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-              <i class="fa fa-star"></i>
-            </li>
-          </ul>
-          <div class="label-rating">154 orders </div>
+          <div class="label-rating">
+            <i class="fa fa-star"></i>
+            <b> {{ev.orders}}</b> orders
+          </div>
         </div>
-        <!-- rating-wrap.// -->
         <hr>
-        <a href="#" class="btn  btn-outline-primary">
-          <i class="fas fa-shopping-cart"></i> Add to cart </a>
+        <a [hidden]="ev.capacity <= ev.orders" (click)="order(ev._id)" class="btn  btn-outline-primary">
+          <i class="fas fa-shopping-cart"></i> Order seat </a>
+          <p class="alert alert-info" *ngIf="ev.capacity <= ev.orders">Sorry! All seats are reserved.</p>
       </article>
-      <!-- card-body.// -->
     </aside>
-    <!-- col.// -->
   </div>
-  <!-- row.// -->
 </div>
-<!-- card.// -->

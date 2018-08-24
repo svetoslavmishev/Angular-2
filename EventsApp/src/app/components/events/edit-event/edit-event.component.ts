@@ -21,7 +21,7 @@ export class EditEventComponent implements OnInit {
     "startDate": new FormControl('', [Validators.required]),
     "startTime": new FormControl('', [Validators.required]),
     "status": new FormControl('', [Validators.required]),
-    "category": new FormControl('', [Validators.required]),
+    "category": new FormControl('', [Validators.required])
   });
 
   id: string;
@@ -48,6 +48,7 @@ export class EditEventComponent implements OnInit {
           "startTime": new FormControl(data['startTime'], [Validators.required]),
           "status": new FormControl(data['status'], [Validators.required]),
           "category": new FormControl(data['category'], [Validators.required]),
+          "orders": new FormControl(data['orders']),
         });
       });
   }

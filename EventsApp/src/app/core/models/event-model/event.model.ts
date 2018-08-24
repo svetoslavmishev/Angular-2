@@ -9,6 +9,6 @@ export class EventModel {
     private capacity: number,
     private category: string,
     private start: Date,
-    private end: Date,
+    private end: Date
   ) { }
 }

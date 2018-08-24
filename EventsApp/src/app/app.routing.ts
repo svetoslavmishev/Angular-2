@@ -10,12 +10,13 @@ import { AdminGuard } from './core/guards/admin.guard';
 import { DashboardComponent } from './components/dashboard/admin-panel/dashboard.component';
 import { ManageUsersComponent } from './components/dashboard/manage-users/manage-users.component';
 import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
+import { AllEventsComponent } from './components/all-events/all-events.component';
 
 
 export const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'news', component: NewsListComponent },
+  { path: 'allevents', component: AllEventsComponent },
   { path: 'auth/signin', component: SigninFormComponent },
   { path: 'auth/signup', component: SignupFormComponent },
   { path: 'auth/dashboard', canActivate: [AdminGuard], component: DashboardComponent },

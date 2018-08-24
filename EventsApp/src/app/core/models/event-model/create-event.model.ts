@@ -9,6 +9,6 @@ export class CreateEventModel {
     private category: string,
     private status: string,
     private startDate: Date,
-    private startTime: Date,
+    private startTime: Date
   ) { }
 }

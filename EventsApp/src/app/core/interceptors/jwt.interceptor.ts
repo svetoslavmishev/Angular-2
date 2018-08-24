@@ -4,6 +4,7 @@ import { tap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { NgxSpinnerService } from '../../../../node_modules/ngx-spinner';
 
 const appKey = "kid_rymYd4nrm";
 const appSecret = "91e94a2e95a34c539144bdd48fe3e35a";
@@ -13,11 +14,14 @@ const masterSecret = "9dfd2cec4cd8471e839b3a4f5e9c4d25";
 export class JwtInterceptor implements HttpInterceptor {
   constructor(
     private toastr: ToastrService,
-    private router: Router
+    private router: Router,
+    private spinner: NgxSpinnerService
   ) { };
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     let currentUser = (JSON.parse(localStorage.getItem('currentUser')));
+
+    this.spinner.show();
 
     if (currentUser) {
       request = request.clone({
@@ -37,7 +41,17 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    if (currentUser && currentUser.roles && request.url.endsWith('/_restore')) {
+    if (currentUser && currentUser.roles && this.router.url.match('/events/details/') && request.method === 'PUT') {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Kinvey ${currentUser.token}`,
+          //'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+
+    if (currentUser === null && this.router.url.endsWith('allevents')) {
       request = request.clone({
         setHeaders: {
           'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
@@ -45,6 +59,17 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
+
+    if (currentUser && currentUser.roles && request.url.endsWith('/_restore')
+      || (currentUser === null && this.router.url.endsWith('allevents'))) {
+      request = request.clone({
+        setHeaders: {
+          'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
+          'Content-Type': 'application/json'
+        }
+      });
+    }
+
 
     return next.handle(request)
       .pipe(tap((res: any) => {
@@ -70,7 +95,7 @@ export class JwtInterceptor implements HttpInterceptor {
           this.router.navigate(['auth/dashboard']);
         };
 
-        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT' && this.router.url.match('/dashboard/edit/')) {
+        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT' && this.router.url.match('/auth/dashboard/edit/')) {
           this.toastr.success('User updated successfully!', "Success!");
           this.router.navigate(['auth/dashboard']);
         };
@@ -93,17 +118,23 @@ export class JwtInterceptor implements HttpInterceptor {
 
         if (res instanceof HttpResponse && res.status === 201 && request.method === 'POST' && this.router.url.endsWith('events/create')) {
           this.toastr.success('New event created!', 'Success!');
-          this.router.navigate(['/events/all']);
+          this.router.navigate(['/allevents']);
         }
 
         if (res instanceof HttpResponse && res.status === 200 && request.method === 'DELETE') {
           this.toastr.success('Event deleted successfully!', 'Success!');
-          //this.router.navigate(['/events/all']);
+          this.router.navigate(['allevents']);
         }
 
-        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT' && this.router.url.match('/events/edit/')) {
-          this.toastr.success('Event editted successfully!', 'Success!');
-          this.router.navigate(['/events/my']);
+        if (res instanceof HttpResponse && res.status === 200 && request.method === 'PUT') {
+
+          if (this.router.url.match('/events/details/[a-z0-9]+$')) {
+            this.toastr.success('You have just reserved you seat!', 'Success!');
+            this.router.navigate(['allevents']);
+          } else if (this.router.url.match('/events/edit/[a-z0-9]+$')) {
+            this.toastr.success('Event editted successfully!', 'Success!');
+            this.router.navigate(['/events/my']);
+          }
         }
       }));
   }

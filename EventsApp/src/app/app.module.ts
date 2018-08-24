@@ -8,19 +8,23 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { NewsModule } from './components/news/news.module';
 import { AppRoutingModule } from './app.routing';
 import { DashboardModule } from './components/dashboard/dashboard.module';
+import { NgxPaginationModule } from '../../node_modules/ngx-pagination';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
+import { AllEventsComponent } from './components/all-events/all-events.component';
 
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
-
+import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HomeComponent
+    HomeComponent,
+    AllEventsComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +35,9 @@ import { ErrorIntercptor } from './core/interceptors/error.interceptor';
     BrowserAnimationsModule,
     NewsModule,
     AppRoutingModule,
-    DashboardModule
+    DashboardModule,
+    NgxPaginationModule,
+    NgxSpinnerModule
   ],
   providers: [
     {
@@ -42,6 +48,11 @@ import { ErrorIntercptor } from './core/interceptors/error.interceptor';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorIntercptor,
+      multi: true
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: LoadingInterceptor,
       multi: true
     }
   ],

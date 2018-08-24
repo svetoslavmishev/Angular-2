@@ -12,6 +12,7 @@ import { ActivatedRoute } from '@angular/router';
 export class DetailsEventComponent implements OnInit {
   event$: Observable<EventModel>
   id: string;
+  orderEvent: Object;
 
   constructor(
     private eventService: EventsService,
@@ -22,5 +23,32 @@ export class DetailsEventComponent implements OnInit {
 
   ngOnInit() {
     this.event$ = this.eventService.getEventDetails(this.id);
+  }
+
+  order(id) {
+    this.eventService.getEventById(id)
+      .subscribe(data => {
+        let claimOrder = Number(data['orders']) + 1;
+
+        if (claimOrder <= data['capacity']) {
+          this.orderEvent = {
+            "title": data['title'],
+            "organizer": data['organizer'],
+            "venue": data['venue'],
+            "description": data['description'],
+            "image": data['image'],
+            "capacity": data['capacity'],
+            "startDate": data['startDate'],
+            "startTime": data['startTime'],
+            "status": data['status'],
+            "category": data['category'],
+            "orders": claimOrder
+          };
+        }
+
+        this.eventService
+          .editEvent(this.id, this.orderEvent)
+          .subscribe();
+      });
   }
 }
