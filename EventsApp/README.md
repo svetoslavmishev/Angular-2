@@ -1,27 +1,50 @@
-# AngularEvents
+﻿![Screenshot](capture1.jpg)
+![Screenshot](capture2.jpg)
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.0.8.
+# SpaecialEvents
 
-## Development server
+This web application using Angular 6 framework with Node.js and Kinvey back-end. It presents public and free events with event ticketing and registration pages in minutes. The application allows users to browse, create, claim and promote local events.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+-	public part (accessible without authentication)
+-	private part (available for registered users) 
+-	administrative part (available for administrators only)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+# Public Part
 
-## Build
+The public part is available for all users without authentication. The public part is start page, the user login and user registration forms, as well as the list with all available events with date and time and title. Unregistered users can not claim seat about events and read the details.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+# Private Part (User Area)
 
-## Running unit tests
+Registered users has personal page (My Events) with personal created events in the web application accessible after successful login. Each registered user can read the short details (date and time, location, title, available seats, tags etc.), claim seats for event and create new events. Only created by himself stadiums can be modify and delete.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+# Administration Part
 
-## Running end-to-end tests
+System administrator has administrative access to the system and permissions to administer all major information objects in the application. Administrator can create, delete and update all events information, create, delete, edit, block, unblock users and their information. Administrator has personal (Dashboard) page with users information.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+### Tech
 
-## Further help
+SpecialEvents uses a number of open source projects to work properly:
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+* Angular 6 - platform that makes it easy to build applications with the web. The application combines declarative templates, dependency injection, components, decorators, data binding, observables, handling reactive forms, interceptors, router, guards to block access to certain routes and other.
+* Bootstrap4 - great UI boilerplate for modern web apps
+* Kinvey - evented I/O for the backend
+
+
+### Installation
+Install the dependencies and devDependencies and start the server.
+
+```sh
+$ npm install
+$ ng serve 
+```
+Run ng serve for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+
+
+License
+----
+MIT
+
+
+**Enjoy!**
+ 
