@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SigninFormComponent } from './components/authentication/signin-form/signin-form.component';
 import { SignupFormComponent } from './components/authentication/signup-form/signup-form.component';
-import { NewsListComponent } from './components/news/news-list/news-list.component';
 import { EventsRoutingModule } from './components/events/events-routing.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AdminGuard } from './core/guards/admin.guard';
@@ -11,6 +10,7 @@ import { DashboardComponent } from './components/dashboard/admin-panel/dashboard
 import { ManageUsersComponent } from './components/dashboard/manage-users/manage-users.component';
 import { EditUserComponent } from './components/dashboard/edit-user/edit-user.component';
 import { AllEventsComponent } from './components/all-events/all-events.component';
+import { NotfoundComponent } from './components/shared/notfound/notfound.component';
 
 
 export const routes: Routes = [
@@ -22,7 +22,8 @@ export const routes: Routes = [
   { path: 'auth/dashboard', canActivate: [AdminGuard], component: DashboardComponent },
   { path: 'auth/dashboard/create', component: ManageUsersComponent },
   { path: 'auth/dashboard/edit/:id', component: EditUserComponent },
-  { path: 'events', canActivate: [AuthGuard], loadChildren: () => EventsRoutingModule }
+  { path: 'events', canActivate: [AuthGuard], loadChildren: () => EventsRoutingModule },
+  { path: '**', component: NotfoundComponent }
 ];
 
 @NgModule({

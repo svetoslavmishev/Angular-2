@@ -1,3 +1,4 @@
+import { Injectable } from '@angular/core';
 import {
   HttpResponse,
   HttpRequest,
@@ -6,8 +7,7 @@ import {
   HttpInterceptor,
   HttpEventType,
   HttpErrorResponse
-} from '@angular/common/http'
-import { Injectable } from '@angular/core';
+} from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { tap, catchError } from 'rxjs/operators';
 import { Router } from '@angular/router';

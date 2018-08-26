@@ -1,15 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EventsService } from '../../core/services/events/events.service';
-import { Observable } from '../../../../node_modules/rxjs';
+import { Observable } from 'rxjs';
 import { EventModel } from '../../core/models/event-model/event.model';
-// import {
-//   trigger,
-//   transition,
-//   style,
-//   animate,
-//   query,
-//   stagger
-// } from '@angular/animations';
 import { AuthService } from '../../core/services/authentication/auth.service';
 
 @Component({
@@ -24,7 +16,8 @@ export class AllEventsComponent implements OnInit {
 
   constructor(
     private eventsService: EventsService,
-    private authService: AuthService) { }
+    private authService: AuthService
+  ) { }
 
   ngOnInit() {
     this.events$ = this.eventsService.getAllEvents();

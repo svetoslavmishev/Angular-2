@@ -4,7 +4,8 @@ import { tap } from 'rxjs/operators';
 import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { NgxSpinnerService } from '../../../../node_modules/ngx-spinner';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 const appKey = "kid_rymYd4nrm";
 const appSecret = "91e94a2e95a34c539144bdd48fe3e35a";
@@ -41,17 +42,7 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-    if (currentUser && currentUser.roles && this.router.url.match('/events/details/') && request.method === 'PUT') {
-      request = request.clone({
-        setHeaders: {
-          'Authorization': `Kinvey ${currentUser.token}`,
-          //'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
-          'Content-Type': 'application/json'
-        }
-      });
-    }
-
-    if (currentUser === null && this.router.url.endsWith('allevents')) {
+    if (currentUser && this.router.url.match('/events/details/') && request.method === 'PUT') {
       request = request.clone({
         setHeaders: {
           'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
@@ -59,6 +50,15 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
+
+    // if (currentUser === null && this.router.url.endsWith('allevents')) {
+    //   request = request.clone({
+    //     setHeaders: {
+    //       'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
+    //       'Content-Type': 'application/json'
+    //     }
+    //   });
+    // }
 
     if (currentUser && currentUser.roles && request.url.endsWith('/_restore')
       || (currentUser === null && this.router.url.endsWith('allevents'))) {
@@ -70,9 +70,9 @@ export class JwtInterceptor implements HttpInterceptor {
       });
     }
 
-
     return next.handle(request)
       .pipe(tap((res: any) => {
+
         if (res instanceof HttpResponse && res.ok && request.url.endsWith('login')) {
           localStorage.setItem(
             'currentUser', JSON.stringify(
@@ -133,7 +133,7 @@ export class JwtInterceptor implements HttpInterceptor {
             this.router.navigate(['allevents']);
           } else if (this.router.url.match('/events/edit/[a-z0-9]+$')) {
             this.toastr.success('Event editted successfully!', 'Success!');
-            this.router.navigate(['/events/my']);
+            this.router.navigate(['allevents']);
           }
         }
       }));

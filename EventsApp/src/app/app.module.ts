@@ -5,10 +5,10 @@ import { SharedModule } from './components/shared/shared.module';
 import { ServicesModule } from './core/services/services.module';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NewsModule } from './components/news/news.module';
 import { AppRoutingModule } from './app.routing';
 import { DashboardModule } from './components/dashboard/dashboard.module';
-import { NgxPaginationModule } from '../../node_modules/ngx-pagination';
+import { NgxPaginationModule } from 'ngx-pagination';
+import { NgxSpinnerModule } from 'ngx-spinner';
 
 import { AppComponent } from './app.component';
 import { HomeComponent } from './components/home/home.component';
@@ -16,9 +16,10 @@ import { AllEventsComponent } from './components/all-events/all-events.component
 
 import { JwtInterceptor } from './core/interceptors/jwt.interceptor';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { ErrorIntercptor } from './core/interceptors/error.interceptor';
 import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
-import { NgxSpinnerModule } from 'ngx-spinner';
+import { ErrorIntercptor } from './core/interceptors/error.interceptor';
+
+
 
 @NgModule({
   declarations: [
@@ -33,7 +34,6 @@ import { NgxSpinnerModule } from 'ngx-spinner';
     ServicesModule,
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
-    NewsModule,
     AppRoutingModule,
     DashboardModule,
     NgxPaginationModule,

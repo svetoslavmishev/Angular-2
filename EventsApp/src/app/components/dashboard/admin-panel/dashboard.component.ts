@@ -24,11 +24,14 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  userInfo(id: string) {
-    this.authService
-      .getUserInfo(id)
-      .subscribe();
-  }
+  //onclick make request about user information
+  // userInfo(id: string) {
+  //   this.authService
+  //     .getUserInfo(id)
+  //     .subscribe(data => {
+  //       console.log(data);
+  //     });
+  // }
 
   suspendUserProfile(id: string) {
     this.authService

@@ -11,7 +11,7 @@ import { tap } from 'rxjs/operators';
 import { NgxSpinnerService } from 'ngx-spinner';
 
 
-@Injectable()//{providedIn: 'root'}
+@Injectable()
 
 export class LoadingInterceptor implements HttpInterceptor {
 
@@ -21,10 +21,12 @@ export class LoadingInterceptor implements HttpInterceptor {
       .pipe(
         tap(event => {
           if (event instanceof HttpResponse) {
+
             this.spinner.hide();
+
           }
         }, error => {
-          this.spinner.hide();
+          this.spinner.hide();         
         })
       )
   };
