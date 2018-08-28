@@ -22,7 +22,7 @@ export const routes: Routes = [
   { path: 'auth/dashboard', canActivate: [AdminGuard], component: DashboardComponent },
   { path: 'auth/dashboard/create', component: ManageUsersComponent },
   { path: 'auth/dashboard/edit/:id', component: EditUserComponent },
-  { path: 'events', canActivate: [AuthGuard], loadChildren: () => EventsRoutingModule },
+  { path: 'events', canActivate: [AuthGuard], loadChildren: "./components/events/events-routing.module#EventsRoutingModule" },
   { path: '**', component: NotfoundComponent }
 ];
 

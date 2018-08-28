@@ -20,7 +20,6 @@ import { LoadingInterceptor } from './core/interceptors/loading.interceptor';
 import { ErrorIntercptor } from './core/interceptors/error.interceptor';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

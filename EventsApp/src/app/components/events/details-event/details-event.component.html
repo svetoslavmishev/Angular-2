@@ -42,14 +42,14 @@
         </dl>
         <div class="rating-wrap">
           <div class="label-rating">
-            <i class="fa fa-star"></i>
+            <i class="fas fa-bookmark"></i>
             <b> {{ev.orders}}</b> orders
           </div>
         </div>
         <hr>
         <a [hidden]="ev.capacity <= ev.orders" (click)="order(ev._id)" class="btn  btn-outline-primary">
-          <i class="fas fa-shopping-cart"></i> Order seat </a>
-          <p class="alert alert-info" *ngIf="ev.capacity <= ev.orders">Sorry! All seats are reserved.</p>
+            <i class="far fa-bookmark"></i> Reserve seat </a>
+        <p class="alert alert-info" *ngIf="ev.capacity <= ev.orders">Sorry! All seats are reserved.</p>
       </article>
     </aside>
   </div>

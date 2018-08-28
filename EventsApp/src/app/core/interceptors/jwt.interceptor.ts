@@ -107,12 +107,11 @@ export class JwtInterceptor implements HttpInterceptor {
 
         if (res instanceof HttpResponse && res.ok && this.router.url.endsWith('signin')) {
           this.toastr.success('You have successfully signed in!', "Success!");
-          //TODO => SHOULD REDIRECT TO PAGE WITH EVENTS
           this.router.navigate(['/home']);
         };
 
         if (res instanceof HttpResponse && res.ok && request.url.endsWith('_logout')) {
-          this.toastr.success('You have successfully logged out!', "Success!");
+          this.toastr.success('Successfully logged out from SpecialEvents!', "Success!");
           this.router.navigate(['/auth/signin']);
         };
 

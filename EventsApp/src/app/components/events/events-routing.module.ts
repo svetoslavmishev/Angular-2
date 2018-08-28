@@ -1,6 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-//import { EventsListComponent } from './events-list/events-list.component';
 import { CreateEventComponent } from './create-event/create-event.component';
 import { MyEventComponent } from './my-event/my-event.component';
 import { DetailsEventComponent } from './details-event/details-event.component';
@@ -11,7 +10,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { EditEventComponent } from './edit-event/edit-event.component';
 
 const eventRoutes: Routes = [
-  //{ path: 'all', component: EventsListComponent },
   { path: 'create', component: CreateEventComponent },
   { path: 'my', component: MyEventComponent },
   { path: 'details/:id', component: DetailsEventComponent },
