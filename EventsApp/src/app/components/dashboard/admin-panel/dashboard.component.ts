@@ -24,15 +24,6 @@ export class DashboardComponent implements OnInit {
       });
   }
 
-  //onclick make request about user information
-  // userInfo(id: string) {
-  //   this.authService
-  //     .getUserInfo(id)
-  //     .subscribe(data => {
-  //       console.log(data);
-  //     });
-  // }
-
   suspendUserProfile(id: string) {
     this.authService
       .suspendUser(id)

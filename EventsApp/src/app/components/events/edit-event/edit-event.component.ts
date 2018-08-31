@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators, FormGroupName } from '@angular/forms';
 import { EventsService } from '../../../core/services/events/events.service';
 import { ActivatedRoute } from '@angular/router';
-import { CreateEventModel } from '../../../core/models/event-model/create-event.model';
 
 
 @Component({

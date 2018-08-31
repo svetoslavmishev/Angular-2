@@ -1,7 +1,13 @@
 import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { tap } from 'rxjs/operators';
-import { HttpRequest, HttpResponse, HttpEvent, HttpInterceptor, HttpHandler, } from '@angular/common/http';
+import {
+  HttpRequest,
+  HttpResponse,
+  HttpEvent,
+  HttpInterceptor,
+  HttpHandler,
+} from '@angular/common/http';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -50,15 +56,6 @@ export class JwtInterceptor implements HttpInterceptor {
         }
       });
     }
-
-    // if (currentUser === null && this.router.url.endsWith('allevents')) {
-    //   request = request.clone({
-    //     setHeaders: {
-    //       'Authorization': `Basic ${btoa(`${appKey}:${masterSecret}`)}`,
-    //       'Content-Type': 'application/json'
-    //     }
-    //   });
-    // }
 
     if (currentUser && currentUser.roles && request.url.endsWith('/_restore')
       || (currentUser === null && this.router.url.endsWith('allevents'))) {

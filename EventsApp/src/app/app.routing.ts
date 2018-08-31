@@ -3,7 +3,6 @@ import { Routes, RouterModule } from '@angular/router';
 import { HomeComponent } from './components/home/home.component';
 import { SigninFormComponent } from './components/authentication/signin-form/signin-form.component';
 import { SignupFormComponent } from './components/authentication/signup-form/signup-form.component';
-import { EventsRoutingModule } from './components/events/events-routing.module';
 import { AuthGuard } from './core/guards/auth.guard';
 import { AdminGuard } from './core/guards/admin.guard';
 import { DashboardComponent } from './components/dashboard/admin-panel/dashboard.component';
