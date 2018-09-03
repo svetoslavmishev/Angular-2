@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FooterComponent implements OnInit {
   author: string = 'Svetlio';
-  product: string = 'MovieFinder';
+  product: string = 'MoviesFinder';
   year: string = '2018';
 
   constructor() { }
